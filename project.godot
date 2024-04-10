@@ -11,8 +11,17 @@ config_version=5
 [application]
 
 config/name="snowshoe"
-config/features=PackedStringArray("4.2", "GL Compatibility")
+run/main_scene="res://scene/level/lvl-dev-test.tscn"
+config/features=PackedStringArray("4.2", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+HelloWorld="*res://src/global/HelloWorld.cs"
+
+[dotnet]
+
+project/assembly_name="snowshoe"
 
 [rendering]
 

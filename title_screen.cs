@@ -6,7 +6,6 @@ public partial class title_screen : Node
 	public override void _Ready()
 	{
 
-	public void basebutton.button.up();
 }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

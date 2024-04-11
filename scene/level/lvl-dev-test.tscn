@@ -1,3 +1,4 @@
 [gd_scene format=3 uid="uid://f6wt5we1fksa"]
 
 [node name="Lvl-dev-test" type="Node2D"]
+position = Vector2(-1, -1)

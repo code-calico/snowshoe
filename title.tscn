@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://bvvltl1ygon77"]
+[gd_scene load_steps=2 format=3 uid="uid://bvvltl1ygon77"]
+
+[ext_resource type="Script" path="res://title_screen.cs" id="1_i1fsp"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -28,3 +30,4 @@ offset_bottom = 365.0
 scale = Vector2(1, 1.02941)
 text = "play game
 "
+script = ExtResource("1_i1fsp")

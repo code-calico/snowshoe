@@ -12,10 +12,9 @@ height = 80.0
 [node name="Lvl-dev-test" type="Node2D"]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(700, 0)
+position = Vector2(570, 678)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-126, 817)
 shape = SubResource("RectangleShape2D_a28s7")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]

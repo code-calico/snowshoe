@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://src/character/CharacterController.cs" id="1_oml7s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a28s7"]
+<<<<<<< HEAD
 size = Vector2(5001, 531.5)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qj7hi"]

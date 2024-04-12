@@ -5,7 +5,15 @@ public partial class CharacterController : CharacterBody2D
 {
 	[ExportCategory("Controller")]
 	[ExportGroup("Basic Movement")]
-	[Export] public float groundedSpeed = 300.0f;
+	
+	[Export] public float topGroundSpeed = 300.0f; 
+	[Export] public float dxGroundAccel = 10.0f;
+	[Export] public float dxGroundDecel = 5.0f;
+
+	[Export] public float topAirSpeed = 300.0f;
+	[Export] public float dxAirAccel = 10.0f;
+	[Export] public float dxAirDecel = 5.0f;
+
 	[Export] public float jumpVelocity = -400.0f;
 
 	private float gravity = GetDefaultGravity();
@@ -15,7 +23,6 @@ public partial class CharacterController : CharacterBody2D
 
 
 	// todo: 
-	// -> switch from ui binds to input maps
 	// -> handle input outside of physics process
 
 	public override void _PhysicsProcess(double delta)
@@ -32,11 +39,22 @@ public partial class CharacterController : CharacterBody2D
 		if (IsAirborne()) { velocityMod.Y += gravity * (float)delta; }
 		if (AbleToJump()) { velocityMod.Y = jumpVelocity; }
 
-		if (CurrentlyMoving()) {
-			velocityMod.X = inputAxisH * groundedSpeed;
+		if (IsOnFloor() && CurrentlyMoving()) {
+			velocityMod.X += inputAxisH * dxGroundAccel;
+			Velocity = new Vector2(Mathf.Clamp(Velocity.X, -topGroundSpeed, topGroundSpeed), Velocity.Y);
+			GD.Print(Velocity);
 		} else {
-			velocityMod.X = Mathf.MoveToward(Velocity.X, 0, groundedSpeed);
+			// velocityMod.X = Mathf.MoveToward(Velocity.X, 0, dxGroundDecel);
 		}
+
+		if (IsAirborne() && CurrentlyMoving()) {
+			velocityMod.X += inputAxisH * dxAirAccel;
+			Velocity = new Vector2(Mathf.Clamp(Velocity.X, -topAirSpeed, topAirSpeed), Velocity.Y);
+			GD.Print(Velocity);
+		} else {
+			// velocityMod.X = Mathf.MoveToward(Velocity.X, 0, dxAirDecel);
+		}
+
 
 		Velocity = velocityMod;
 

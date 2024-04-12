@@ -17,6 +17,9 @@ public partial class CharacterController : CharacterBody2D
 	[Export] public float dxAirDecel = 1.0f;
 	[Export] public float jumpVelocity = -400.0f;
 
+	[ExportSubgroup("Debug")]
+	[Export] private bool debugOn = false;
+
 	private float gravity = GetDefaultGravity();
 
 	// inputAxisV currently unused
@@ -45,7 +48,6 @@ public partial class CharacterController : CharacterBody2D
 
 		if (HorizontalInputActive()) {
 			velocityMod.X += inputAxisH * dxGroundAccel;
-			GD.Print(Velocity);
 		} else {
 			velocityMod.X = Mathf.MoveToward(Velocity.X, 0, targetDecel);
 		}
@@ -53,6 +55,8 @@ public partial class CharacterController : CharacterBody2D
 		velocityMod.X = Mathf.Clamp(velocityMod.X, -targetTopSpeed, targetTopSpeed);
 		Velocity = velocityMod;
 
+		if (debugOn) { GD.Print("Current Velocity: " + Velocity); }
+		
 		MoveAndSlide();
 	}
 

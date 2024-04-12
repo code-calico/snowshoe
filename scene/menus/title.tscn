@@ -45,5 +45,4 @@ scale = Vector2(1, 1.02941)
 text = "play game
 "
 script = ExtResource("1_qf016")
-folderName = "level"
-sceneName = "lvl-dev-test"
+scene = "res://scene/level/lvl-dev-test.tscn"

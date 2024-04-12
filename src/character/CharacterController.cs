@@ -20,7 +20,12 @@ public partial class CharacterController : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
-		inputAxisH = Input.GetAxis("ui_left", "ui_right"); 
+		inputAxisH = Input.GetAxis("protag_move_left", "protag_move_right");
+
+		// Technically there are no "move up" or "move down" but for the sake of uniformity, I do name them like this.
+		// Move up would probably just be like a "look up and pan the camera" thing.
+		// Move down would be a crouch.
+		inputAxisV = Input.GetAxis("protag_move_up", "protag_move_right");
 
 		Vector2 velocityMod = Velocity;
 
@@ -39,7 +44,7 @@ public partial class CharacterController : CharacterBody2D
 	}
 
 	bool IsAirborne() => !IsOnFloor();
-	bool AbleToJump() => Input.IsActionJustPressed("ui_accept") && IsOnFloor(); 
+	bool AbleToJump() => Input.IsActionJustPressed("protag_jump") && IsOnFloor(); 
 	bool CurrentlyMoving() => inputAxisH != 0;
 	static float GetDefaultGravity() => ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 

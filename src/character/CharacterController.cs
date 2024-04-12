@@ -6,20 +6,22 @@ public partial class CharacterController : CharacterBody2D
 	[ExportCategory("Controller")]
 	[ExportGroup("Basic Movement")]
 	
+	[ExportSubgroup("Ground")]
 	[Export] public float topGroundSpeed = 300.0f; 
 	[Export] public float dxGroundAccel = 10.0f;
 	[Export] public float dxGroundDecel = 5.0f;
 
-	[Export] public float topAirSpeed = 300.0f;
-	[Export] public float dxAirAccel = 10.0f;
-	[Export] public float dxAirDecel = 5.0f;
-
+	[ExportSubgroup("Air")]
+	[Export] public float topAirSpeed = 400.0f;
+	[Export] public float dxAirAccel = 20.0f;
+	[Export] public float dxAirDecel = 1.0f;
 	[Export] public float jumpVelocity = -400.0f;
 
 	private float gravity = GetDefaultGravity();
 
 	// inputAxisV currently unused
 	float inputAxisH, inputAxisV = 0; 
+	private float targetTopSpeed, targetAccel, targetDecel;
 
 
 	// todo: 
@@ -39,31 +41,30 @@ public partial class CharacterController : CharacterBody2D
 		if (IsAirborne()) { velocityMod.Y += gravity * (float)delta; }
 		if (AbleToJump()) { velocityMod.Y = jumpVelocity; }
 
-		if (IsOnFloor() && CurrentlyMoving()) {
+		SetStateVariables();
+
+		if (HorizontalInputActive()) {
 			velocityMod.X += inputAxisH * dxGroundAccel;
-			Velocity = new Vector2(Mathf.Clamp(Velocity.X, -topGroundSpeed, topGroundSpeed), Velocity.Y);
 			GD.Print(Velocity);
 		} else {
-			// velocityMod.X = Mathf.MoveToward(Velocity.X, 0, dxGroundDecel);
+			velocityMod.X = Mathf.MoveToward(Velocity.X, 0, targetDecel);
 		}
 
-		if (IsAirborne() && CurrentlyMoving()) {
-			velocityMod.X += inputAxisH * dxAirAccel;
-			Velocity = new Vector2(Mathf.Clamp(Velocity.X, -topAirSpeed, topAirSpeed), Velocity.Y);
-			GD.Print(Velocity);
-		} else {
-			// velocityMod.X = Mathf.MoveToward(Velocity.X, 0, dxAirDecel);
-		}
-
-
+		velocityMod.X = Mathf.Clamp(velocityMod.X, -targetTopSpeed, targetTopSpeed);
 		Velocity = velocityMod;
 
 		MoveAndSlide();
 	}
 
+	void SetStateVariables() {
+		targetTopSpeed = IsOnFloor() ? topGroundSpeed : topAirSpeed;
+		targetAccel = IsOnFloor() ? dxGroundAccel : dxAirAccel;
+		targetDecel = IsOnFloor() ? dxGroundDecel : dxAirDecel;
+	}	
+
 	bool IsAirborne() => !IsOnFloor();
 	bool AbleToJump() => Input.IsActionJustPressed("protag_jump") && IsOnFloor(); 
-	bool CurrentlyMoving() => inputAxisH != 0;
+	bool HorizontalInputActive() => inputAxisH != 0;
 	static float GetDefaultGravity() => ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 
 }

@@ -25,16 +25,21 @@ public partial class CharacterController : CharacterBody2D
 	[Export] private bool debugOn = false;
 	private ulong instanceID = 0;
 
-
 	// inputAxisV currently unused
-	float inputAxisH, inputAxisV = 0; 
+	private float inputAxisH, inputAxisV = 0; 
 	private float targetTopSpeed, targetAccel, targetDecel;
+	
+	private bool jumpAllowed;
+
+	private RayCast2D jumpBufferCast;
 
 	// todo: 
 	// -> handle input outside of physics process
 
 	public override void _Ready() {
 		instanceID = GetInstanceId();
+		jumpBufferCast = GetNode<RayCast2D>("JumpBuffer");
+		jumpBufferCast.Enabled = true;
 	}
 
 	public override void _Process(double delta) {
@@ -171,7 +176,10 @@ public partial class CharacterController : CharacterBody2D
 	}	
 
 	bool IsAirborne() => !IsOnFloor();
-	bool AbleToJump() => Input.IsActionJustPressed("protag_jump") && IsOnFloor(); 
+	bool AbleToJump() {
+		jumpAllowed = jumpBufferCast.IsColliding();
+		return jumpAllowed && Input.IsActionJustPressed("protag_jump"); 
+	}
 	bool HorizontalInputActive() => inputAxisH != 0;
 	static float GetDefaultGravity() => ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 

@@ -105,6 +105,9 @@ position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
+[node name="JumpBuffer" type="RayCast2D" parent="CharacterBody2D"]
+target_position = Vector2(0, 73)
+
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2(4, 4)
 tile_set = SubResource("TileSet_sakvn")

@@ -93,6 +93,7 @@ sources/0 = SubResource("TileSetAtlasSource_ceijf")
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 position = Vector2(574, 354)
 script = ExtResource("1_oml7s")
+debugOn = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 shape = SubResource("CapsuleShape2D_qj7hi")

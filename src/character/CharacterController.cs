@@ -14,18 +14,10 @@ public partial class CharacterController : CharacterBody2D
 
 	// inputAxisV currently unused
 	float inputAxisH, inputAxisV = 0;
-
-
+	
 	// todo: 
 	// -> switch from ui binds to input maps
 	// -> handle input outside of physics process
-
-	public override void _Process(double delta)
-	{
-		ImGui.Begin("");
-		ImGui.Text("hello world");
-		ImGui.End();
-	}
 
 	public override void _PhysicsProcess(double delta)
 	{
@@ -51,12 +43,6 @@ public partial class CharacterController : CharacterBody2D
 		Velocity = velocityMod;
 
 		MoveAndSlide();
-	}
-
-	void Debug() {
-		ImGui.Begin("ImGui on Godot 4");
-        ImGui.Text("hello world");
-        ImGui.End();
 	}
 
 	bool IsAirborne() => !IsOnFloor();

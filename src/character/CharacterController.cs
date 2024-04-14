@@ -148,9 +148,9 @@ public partial class CharacterController : CharacterBody2D
 			if (ImGui.CollapsingHeader("Air")) {
 				ImGui.Indent(20);
 				ImGui.Spacing();
+				ImGUI_ModifyFloat("Top Air Speed", ref topAirSpeed);
 				ImGUI_ModifyFloat("Air Acceleration", ref dxAirAccel);
 				ImGUI_ModifyFloat("Air Deceleration", ref dxGroundDecel);
-				ImGUI_ModifyFloat("Top Air Speed", ref topAirSpeed);
 				ImGui.Unindent(20);
 			}
 			ImGui.Spacing();

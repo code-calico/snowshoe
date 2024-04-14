@@ -25,11 +25,16 @@ public partial class CharacterController : CharacterBody2D
 	[Export] private bool debugOn = false;
 	private ulong instanceID = 0;
 
+	[ExportSubgroup("Unique")]
+	[Export] private float coyoteTime = 0.75f;
+	private float coyoteTimeTick;
+
+	private bool jumpUsed = false;
+	private bool jumpQueued = false;
+
 	// inputAxisV currently unused
 	private float inputAxisH, inputAxisV = 0; 
-	private float targetTopSpeed, targetAccel, targetDecel;
-	
-	private bool jumpQueued;
+	private float targetTopSpeed, targetAccel, targetDecel;	
 
 	private RayCast2D jumpBufferCast;
 
@@ -40,6 +45,8 @@ public partial class CharacterController : CharacterBody2D
 		instanceID = GetInstanceId();
 		jumpBufferCast = GetNode<RayCast2D>("JumpBuffer");
 		jumpBufferCast.Enabled = true;
+
+		coyoteTimeTick = coyoteTime;
 	}
 
 	public override void _Process(double delta) {
@@ -58,12 +65,28 @@ public partial class CharacterController : CharacterBody2D
 		
 		Vector2 velocityMod = Velocity;
 
-		if (IsAirborne()) { velocityMod.Y += gravity * (float)delta; }
-
+		if (IsAirborne()) { 
+			velocityMod.Y += gravity * (float)delta; 
+		} else {
+			jumpUsed = false;
+			coyoteTimeTick = coyoteTime;
+		}
+		
+		if (coyoteTimeTick > 0 && !IsOnFloor() && !jumpUsed) {
+			coyoteTimeTick -= (float)delta;
+			coyoteTimeTick = Mathf.Max(0, coyoteTimeTick);
+			if (Input.IsActionJustPressed("protag_jump")) {
+				coyoteTimeTick = 0;
+				velocityMod.Y = jumpVelocity;
+				jumpUsed = true;
+			}
+		}
+	
 		JumpQueueCheck(); 
 		if (jumpQueued && IsOnFloor()) {
 			jumpQueued = false;
 			velocityMod.Y = jumpVelocity;
+			jumpUsed = true;
 		}
 
 		SetStateVariables();
@@ -103,6 +126,7 @@ public partial class CharacterController : CharacterBody2D
 			ImGui.Text("Top Ground Speed: " + topGroundSpeed);
 			ImGui.Text("Jump Velocity: " + jumpVelocity);
 			ImGui.Text("Gravity: " + gravity);
+			ImGui.Text("Coyote Time: " + string.Format("{0:F2}", coyoteTimeTick) + "/" + string.Format("{0:F2}", coyoteTime));
 			ImGui.Spacing();
 			ImGui.Unindent(20);
 		}		

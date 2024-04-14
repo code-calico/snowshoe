@@ -48,7 +48,7 @@ public partial class CharacterController : CharacterBody2D
 		// Technically there are no "move up" or "move down" but for the sake of uniformity, I do name them like this.
 		// Move up would probably just be like a "look up and pan the camera" thing.
 		// Move down would be a crouch.
-		inputAxisV = Input.GetAxis("protag_move_up", "protag_move_right");
+		inputAxisV = Input.GetAxis("protag_move_down", "protag_move_up");
 		
 		
 		Vector2 velocityMod = Velocity;
@@ -83,6 +83,7 @@ public partial class CharacterController : CharacterBody2D
 				ImGui.Text("Ground Deceleration: " + dxGroundDecel);
 				ImGui.Text("Air Acceleration: " + dxAirAccel);
 				ImGui.Text("Air Deceleration: " + dxGroundAccel);
+				ImGui.Spacing();
 				ImGui.Unindent(20);
 			}
 			
@@ -98,6 +99,16 @@ public partial class CharacterController : CharacterBody2D
 
 		if (ImGui.CollapsingHeader("State")) {
 			ImGui.Indent(20);
+
+			if(ImGui.CollapsingHeader("Input")) {
+				ImGui.Indent(20);
+				ImGui.Text("Horizontal Input: " + inputAxisH);
+				ImGui.Text("Vertical Input: " + inputAxisV);
+				ImGui.Text("Space: " + Input.IsActionJustPressed("protag_jump"));
+				ImGui.Spacing();
+				ImGui.Unindent(20);
+			}
+
 			ImGui.Text("Grounded: " + IsOnFloor());
 			ImGui.Text("Airborne: " + IsAirborne());
 			ImGui.Text("Target Acceleration: " + targetAccel);

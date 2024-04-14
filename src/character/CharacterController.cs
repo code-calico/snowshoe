@@ -29,7 +29,7 @@ public partial class CharacterController : CharacterBody2D
 	private float inputAxisH, inputAxisV = 0; 
 	private float targetTopSpeed, targetAccel, targetDecel;
 	
-	private bool jumpAllowed;
+	private bool jumpQueued;
 
 	private RayCast2D jumpBufferCast;
 
@@ -59,7 +59,12 @@ public partial class CharacterController : CharacterBody2D
 		Vector2 velocityMod = Velocity;
 
 		if (IsAirborne()) { velocityMod.Y += gravity * (float)delta; }
-		if (AbleToJump()) { velocityMod.Y = jumpVelocity; }
+
+		JumpQueueCheck(); 
+		if (jumpQueued && IsOnFloor()) {
+			jumpQueued = false;
+			velocityMod.Y = jumpVelocity;
+		}
 
 		SetStateVariables();
 
@@ -175,11 +180,13 @@ public partial class CharacterController : CharacterBody2D
 		targetDecel = IsOnFloor() ? dxGroundDecel : dxAirDecel;
 	}	
 
-	bool IsAirborne() => !IsOnFloor();
-	bool AbleToJump() {
-		jumpAllowed = jumpBufferCast.IsColliding();
-		return jumpAllowed && Input.IsActionJustPressed("protag_jump"); 
+	void JumpQueueCheck() {
+		if (jumpBufferCast.IsColliding() && Input.IsActionJustPressed("protag_jump")) {
+			jumpQueued = true;
+		} 
 	}
+
+	bool IsAirborne() => !IsOnFloor();
 	bool HorizontalInputActive() => inputAxisH != 0;
 	static float GetDefaultGravity() => ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 

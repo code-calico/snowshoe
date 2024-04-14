@@ -1,5 +1,7 @@
 using Godot;
+using ImGuiNET;
 using System;
+
 
 public partial class CharacterController : CharacterBody2D
 {
@@ -25,8 +27,7 @@ public partial class CharacterController : CharacterBody2D
 	// inputAxisV currently unused
 	float inputAxisH, inputAxisV = 0; 
 	private float targetTopSpeed, targetAccel, targetDecel;
-
-
+  
 	// todo: 
 	// -> handle input outside of physics process
 
@@ -38,7 +39,8 @@ public partial class CharacterController : CharacterBody2D
 		// Move up would probably just be like a "look up and pan the camera" thing.
 		// Move down would be a crouch.
 		inputAxisV = Input.GetAxis("protag_move_up", "protag_move_right");
-
+		
+		
 		Vector2 velocityMod = Velocity;
 
 		if (IsAirborne()) { velocityMod.Y += gravity * (float)delta; }

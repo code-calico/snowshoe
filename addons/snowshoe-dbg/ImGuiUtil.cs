@@ -45,10 +45,25 @@ public static class ImGuiUtil {
 		float input = value;
 		ImGui.Text(name + ": ");
 		ImGui.SameLine();
-		ImGui.SetNextItemWidth(200);
-		if (ImGui.InputFloat($"##{name}", ref input, 10)) {
+		ImGui.SetNextItemWidth(100);
+		if (ImGui.InputFloat($"##{name}", ref input, 10, 50, "%.1f")) {
 			value = input;
 		}
 		ImGui.EndGroup();
 	}
+
+    public static void ModifyFloat(string name, ref float value, float slowStep, float fastStep) {
+		ImGui.BeginGroup();
+		float input = value;
+		ImGui.Text(name + ": ");
+		ImGui.SameLine();
+		ImGui.SetNextItemWidth(100);
+		if (ImGui.InputFloat($"##{name}", ref input, slowStep, fastStep, "%.1f")) {
+			value = input;
+		}
+		ImGui.EndGroup();
+	}
+
+    public static string FormatFloat(float f) => string.Format("{0:F1}", f);
+    public static string FormatFloat(float f, int figures) => string.Format("{0:F" + figures.ToString() + "}", f);
 } 

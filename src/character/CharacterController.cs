@@ -112,10 +112,13 @@ public partial class CharacterController : CharacterBody2D
 			
 			if(ImGui.CollapsingHeader("Rate of Change")) {
 				ImGui.Indent(20);
+				ImGui.Spacing();
 				ImGui.Text("Ground Acceleration: " + dxGroundAccel);
 				ImGui.Text("Ground Deceleration: " + dxGroundDecel);
 				ImGui.Text("Air Acceleration: " + dxAirAccel);
 				ImGui.Text("Air Deceleration: " + dxGroundAccel);
+				ImGui.Spacing();
+				ImGui.Separator();
 				ImGui.Spacing();
 				ImGui.Unindent(20);
 			}
@@ -133,12 +136,16 @@ public partial class CharacterController : CharacterBody2D
 
 		if (ImGui.CollapsingHeader("State")) {
 			ImGui.Indent(20);
+			ImGui.Spacing();
 
 			if(ImGui.CollapsingHeader("Input")) {
 				ImGui.Indent(20);
+				ImGui.Spacing();
 				ImGui.Text("Horizontal Input: " + inputAxisH);
 				ImGui.Text("Vertical Input: " + inputAxisV);
 				ImGui.Text("Space: " + Input.IsActionJustPressed("protag_jump"));
+				ImGui.Spacing();
+				ImGui.Separator();
 				ImGui.Spacing();
 				ImGui.Unindent(20);
 			}
@@ -175,9 +182,9 @@ public partial class CharacterController : CharacterBody2D
 			if (ImGui.CollapsingHeader("Air")) {
 				ImGui.Indent(20);
 				ImGui.Spacing();
+				ImGUI_ModifyFloat("Top Air Speed", ref topAirSpeed);
 				ImGUI_ModifyFloat("Air Acceleration", ref dxAirAccel);
 				ImGUI_ModifyFloat("Air Deceleration", ref dxGroundDecel);
-				ImGUI_ModifyFloat("Top Air Speed", ref topAirSpeed);
 				ImGui.Unindent(20);
 			}
 			ImGui.Spacing();

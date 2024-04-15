@@ -6,6 +6,8 @@ func _ready():
 		print("Established Connection w/ Discord ...!")
 	else:
 		print("Connection w/ Discord Failed ...")
-	DiscordRPC.state = "Now Playing:"
+	DiscordRPC.state = "playtesting  :3"
 	DiscordRPC.start_timestamp = int(Time.get_unix_time_from_system())
+	DiscordRPC.large_image = "cat_selfie"
+	#DiscordRPC.small_image = "cat_selfie"
 	DiscordRPC.refresh()

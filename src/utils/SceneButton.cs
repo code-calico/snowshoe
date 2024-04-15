@@ -18,3 +18,4 @@ public partial class SceneButton : Button {
 		GetTree().ChangeSceneToPacked(sceneResource);
 	}
 }
+

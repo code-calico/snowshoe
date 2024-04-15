@@ -3,7 +3,6 @@
 [ext_resource type="Script" path="res://src/utils/SceneButton.cs" id="1_qf016"]
 [ext_resource type="Script" path="res://scene/menus/MenuQuit.cs" id="2_gl0qu"]
 
-
 [node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 15

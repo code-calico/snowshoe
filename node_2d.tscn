@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3dea3up8m5j"]
+
+[ext_resource type="PackedScene" uid="uid://f6wt5we1fksa" path="res://scene/level/lvl-dev-test.tscn" id="1_iln6b"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Lvl-dev-test" parent="." instance=ExtResource("1_iln6b")]
+position = Vector2(27, 547)

@@ -2,9 +2,7 @@ using Godot;
 using System;
 using System.Diagnostics;
 using System.IO;
-
-public partial class SceneButton : Button
-{	
+public partial class SceneButton : Button {
 
 	// set the scene variable in the inspector rather than in code please !
 	[Export(PropertyHint.File, "*.tscn")] 

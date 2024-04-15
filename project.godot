@@ -19,6 +19,8 @@ config/icon="res://icon.svg"
 
 HelloWorld="*res://src/global/HelloWorld.cs"
 ImGuiLayer="*res://addons/imgui-godot/ImGuiLayer.tscn"
+DiscordRPCLoader="*res://addons/discord-rpc-gd/nodes/discord_autoload.gd"
+DiscordRpcAutoload="*res://src/global/DiscordRPC_Autoload.gd"
 
 [dotnet]
 
@@ -26,7 +28,7 @@ project/assembly_name="snowshoe"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/imgui-godot/plugin.cfg")
+enabled=PackedStringArray("res://addons/discord-rpc-gd/plugin.cfg", "res://addons/imgui-godot/plugin.cfg")
 
 [input]
 

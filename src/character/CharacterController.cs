@@ -25,16 +25,28 @@ public partial class CharacterController : CharacterBody2D
 	[Export] private bool debugOn = false;
 	private ulong instanceID = 0;
 
+	[ExportSubgroup("Unique")]
+	[Export] private float coyoteTime = 0.75f;
+	private float coyoteTimeTick;
+
+	private bool jumpUsed = false;
+	private bool jumpQueued = false;
 
 	// inputAxisV currently unused
-	float inputAxisH, inputAxisV = 0; 
-	private float targetTopSpeed, targetAccel, targetDecel;
+	private float inputAxisH, inputAxisV = 0; 
+	private float targetTopSpeed, targetAccel, targetDecel;	
+
+	private RayCast2D jumpBufferCast;
 
 	// todo: 
 	// -> handle input outside of physics process
 
 	public override void _Ready() {
 		instanceID = GetInstanceId();
+		jumpBufferCast = GetNode<RayCast2D>("JumpBuffer");
+		jumpBufferCast.Enabled = true;
+
+		coyoteTimeTick = coyoteTime;
 	}
 
 	public override void _Process(double delta) {
@@ -53,8 +65,29 @@ public partial class CharacterController : CharacterBody2D
 		
 		Vector2 velocityMod = Velocity;
 
-		if (IsAirborne()) { velocityMod.Y += gravity * (float)delta; }
-		if (AbleToJump()) { velocityMod.Y = jumpVelocity; }
+		if (IsAirborne()) { 
+			velocityMod.Y += gravity * (float)delta; 
+		} else {
+			jumpUsed = false;
+			coyoteTimeTick = coyoteTime;
+		}
+		
+		if (coyoteTimeTick > 0 && !IsOnFloor() && !jumpUsed) {
+			coyoteTimeTick -= (float)delta;
+			coyoteTimeTick = Mathf.Max(0, coyoteTimeTick);
+			if (Input.IsActionJustPressed("protag_jump")) {
+				coyoteTimeTick = 0;
+				velocityMod.Y = jumpVelocity;
+				jumpUsed = true;
+			}
+		}
+	
+		JumpQueueCheck(); 
+		if (jumpQueued && IsOnFloor()) {
+			jumpQueued = false;
+			velocityMod.Y = jumpVelocity;
+			jumpUsed = true;
+		}
 
 		SetStateVariables();
 
@@ -93,6 +126,7 @@ public partial class CharacterController : CharacterBody2D
 			ImGui.Text("Top Ground Speed: " + topGroundSpeed);
 			ImGui.Text("Jump Velocity: " + jumpVelocity);
 			ImGui.Text("Gravity: " + gravity);
+			ImGui.Text("Coyote Time: " + string.Format("{0:F2}", coyoteTimeTick) + "/" + string.Format("{0:F2}", coyoteTime));
 			ImGui.Spacing();
 			ImGui.Unindent(20);
 		}		
@@ -170,8 +204,13 @@ public partial class CharacterController : CharacterBody2D
 		targetDecel = IsOnFloor() ? dxGroundDecel : dxAirDecel;
 	}	
 
+	void JumpQueueCheck() {
+		if (jumpBufferCast.IsColliding() && Input.IsActionJustPressed("protag_jump")) {
+			jumpQueued = true;
+		} 
+	}
+
 	bool IsAirborne() => !IsOnFloor();
-	bool AbleToJump() => Input.IsActionJustPressed("protag_jump") && IsOnFloor(); 
 	bool HorizontalInputActive() => inputAxisH != 0;
 	static float GetDefaultGravity() => ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 

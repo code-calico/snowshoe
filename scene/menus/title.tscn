@@ -1,7 +1,8 @@
 [gd_scene load_steps=3 format=3 uid="uid://b81mlelwhamwy"]
 
 [ext_resource type="Script" path="res://src/utils/SceneButton.cs" id="1_qf016"]
-[ext_resource type="Script" path="res://scene/menus/quit.cs" id="2_gl0qu"]
+[ext_resource type="Script" path="res://scene/menus/MenuQuit.cs" id="2_gl0qu"]
+
 
 [node name="Control" type="Control"]
 layout_mode = 3

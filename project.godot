@@ -18,10 +18,15 @@ config/icon="res://icon.svg"
 [autoload]
 
 HelloWorld="*res://src/global/HelloWorld.cs"
+ImGuiLayer="*res://addons/imgui-godot/ImGuiLayer.tscn"
 
 [dotnet]
 
 project/assembly_name="snowshoe"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/imgui-godot/plugin.cfg")
 
 [input]
 
@@ -67,5 +72,5 @@ protag_move_down={
 
 [rendering]
 
-renderer/rendering_method="gl_compatibility"
-renderer/rendering_method.mobile="gl_compatibility"
+textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="mobile"

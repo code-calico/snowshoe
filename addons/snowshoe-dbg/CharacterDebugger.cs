@@ -6,7 +6,7 @@ public partial class CharacterDebugger : Node
 {
 	ulong instanceID = 0;
 	CharacterController parent;
-	[Export] private bool debugOn = false;
+	[Export] private bool debugOn = true;
 	[Export] private float opacity = 0.75f;
 
 	private System.Numerics.Vector2 cheatCachePos = System.Numerics.Vector2.Zero;

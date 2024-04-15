@@ -110,7 +110,6 @@ target_position = Vector2(0, 64)
 
 [node name="CharacterDebug" type="Node2D" parent="CharacterBody2D"]
 script = ExtResource("2_wnhmc")
-debugOn = true
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2(4, 4)

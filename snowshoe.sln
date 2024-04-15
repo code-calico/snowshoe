@@ -1,12 +1,15 @@
-﻿Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34525.116
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "snowshoe", "snowshoe.csproj", "{C1CC99CF-1277-4F6A-AC6B-F0DCA3A41F2A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-	Debug|Any CPU = Debug|Any CPU
-	ExportDebug|Any CPU = ExportDebug|Any CPU
-	ExportRelease|Any CPU = ExportRelease|Any CPU
+		Debug|Any CPU = Debug|Any CPU
+		ExportDebug|Any CPU = ExportDebug|Any CPU
+		ExportRelease|Any CPU = ExportRelease|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{C1CC99CF-1277-4F6A-AC6B-F0DCA3A41F2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -15,5 +18,11 @@ Global
 		{C1CC99CF-1277-4F6A-AC6B-F0DCA3A41F2A}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
 		{C1CC99CF-1277-4F6A-AC6B-F0DCA3A41F2A}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
 		{C1CC99CF-1277-4F6A-AC6B-F0DCA3A41F2A}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {588DA176-FD75-46A2-B5D6-614785D44D8F}
 	EndGlobalSection
 EndGlobal

@@ -136,7 +136,7 @@ public partial class CharacterDebugger : Node
 			}
 			
 			ImGui.SameLine();
-			ImGui.SetNextItemWidth(200);
+			ImGui.SetNextItemWidth(100);
 			
 			if (ImGui.InputFloat2("", ref cheatCachePos, "%.1f")) { previewingPosition = true; } 
 			if (previewingPosition) { 
@@ -152,7 +152,12 @@ public partial class CharacterDebugger : Node
 
 			ImGui.EndGroup();
 
-			if (ImGui.Button("Go To Spawn")) { parent.Position = posOnLoad; }
+			if (ImGui.Button("Go To Spawn")) { 
+				previewingPosition = false;
+				cheatCachePos = System.Numerics.Vector2.Zero;
+				parent.Velocity = Vector2.Zero;
+				parent.Position = posOnLoad; 
+			}
 
 			ImGuiUtil.BotPad();
 		}

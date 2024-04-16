@@ -11,16 +11,16 @@ config_version=5
 [application]
 
 config/name="snowshoe"
-run/main_scene="res://scene/level/lvl-dev-test.tscn"
+run/main_scene="res://scene/menus/title.tscn"
 config/features=PackedStringArray("4.2", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
-HelloWorld="*res://src/global/HelloWorld.cs"
+SceneManager="*res://src/utils/SceneManager.cs"
 ImGuiLayer="*res://addons/imgui-godot/ImGuiLayer.tscn"
 DiscordRPCLoader="*res://addons/discord-rpc-gd/nodes/discord_autoload.gd"
-DiscordRpcAutoload="*res://src/global/discord_rpc_autoload.gd"
+DiscordRPCHandler="*res://src/global/discord_rpc_autoload.gd"
 
 [dotnet]
 

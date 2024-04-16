@@ -1,9 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://b81mlelwhamwy"]
+[gd_scene load_steps=2 format=3 uid="uid://b81mlelwhamwy"]
 
-[ext_resource type="Script" path="res://src/utils/SceneButton.cs" id="1_qf016"]
-[ext_resource type="Script" path="res://scene/menus/MenuQuit.cs" id="2_gl0qu"]
+[ext_resource type="Script" path="res://scene/menus/TitleMenu.cs" id="1_5cqiv"]
 
-[node name="Control" type="Control"]
+[node name="TitleMenu" type="Control" node_paths=PackedStringArray("play", "options", "quit")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,57 +11,46 @@ offset_left = 5.0
 offset_right = 5.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_5cqiv")
+play = NodePath("VerticalArrangement/VerticalArrangement/Play")
+playScenePath = "res://scene/level/lvl-dev-test.tscn"
+options = NodePath("VerticalArrangement/VerticalArrangement/Options")
+quit = NodePath("VerticalArrangement/VerticalArrangement/Quit")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="VerticalArrangement" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -396.0
-offset_top = -82.0
-offset_right = 459.0
-offset_bottom = 64.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VerticalArrangement"]
+clip_contents = false
+layout_mode = 2
 bbcode_enabled = true
-text = "[center][rainbow freq=0.1 sat=1 val=1][wave]godot cat game or some shit idk (gone woke!!!)[/wave][/rainbow][/center]"
+text = "[center] [b] snowshoe [/b] 
+[wave freq=10][rainbow freq=0.1 sat=0.5] now with 100% more invisible colliders[/rainbow][/wave][/center]"
+fit_content = true
 
-[node name="Button" type="Button" parent="RichTextLabel"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.41
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -239.32
-offset_top = -24.0
-offset_right = -34.0
-offset_bottom = 59.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(1, 1.02941)
-text = "play game
+[node name="VerticalArrangement" type="VBoxContainer" parent="VerticalArrangement"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Play" type="Button" parent="VerticalArrangement/VerticalArrangement"]
+layout_mode = 2
+text = "Play
 "
-script = ExtResource("1_qf016")
-scene = "res://scene/level/lvl-dev-test.tscn"
 
-[node name="Button" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.41
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 139.68
-offset_top = -35.0
-offset_right = 345.0
-offset_bottom = 48.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(1, 1.02941)
-text = "quit
-
+[node name="Options" type="Button" parent="VerticalArrangement/VerticalArrangement"]
+layout_mode = 2
+text = "Options
 "
-script = ExtResource("2_gl0qu")
+
+[node name="Quit" type="Button" parent="VerticalArrangement/VerticalArrangement"]
+layout_mode = 2
+text = "Quit
+"

@@ -14,6 +14,12 @@ public partial class TitleMenu : Control
 	[ExportGroup("Quit Button")]
 	[Export] Button quit;
 
+	public override void _Process(double delta) {
+		if (Input.IsActionJustPressed("ui_cancel")) {
+			Quit();
+		}
+	}
+
 	public override void _Ready() {
 		if (play != null && playScenePath != null) { play.ButtonUp += Play; } 
 		if (options != null && optionsScenePath != null) { options.ButtonUp += Options; }

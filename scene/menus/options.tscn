@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbmqcwslvopfo"]
+
+[ext_resource type="Script" path="res://scene/menus/OptionsMenu.cs" id="1_d6etq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lcq7v"]
+
+[node name="OptionsMenu" type="Control" node_paths=PackedStringArray("back")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_d6etq")
+back = NodePath("Button")
+mainMenuPath = "res://scene/menus/title.tscn"
+
+[node name="TabBar" type="TabBar" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 31.0
+grow_horizontal = 2
+theme_override_styles/tab_focus = SubResource("StyleBoxEmpty_lcq7v")
+tab_count = 4
+tab_alignment = 1
+tab_0/title = "Gameplay"
+tab_1/title = "Video"
+tab_2/title = "Audio"
+tab_3/title = "Controls"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_right = 23.0
+offset_bottom = 31.0
+text = " <- Back "

@@ -11,3 +11,4 @@ func _ready():
 	DiscordRPC.large_image = "cat_selfie"
 	#DiscordRPC.small_image = "cat_selfie"
 	DiscordRPC.refresh()
+	queue_free()

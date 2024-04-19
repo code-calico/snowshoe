@@ -17,20 +17,19 @@ public partial class OptionsMenu : Control
 	}
 
 	public override void _Ready() {
-		for (int i = 0; i < panels.Length; i++) {
-			panels[i].Visible = false;
-		}
-		panels[0].Visible = true;
+		FocusTab(0);
 		
 		back.ButtonUp += Back;
 		bar.TabChanged += TabSelected;
 	}
 
-	void TabSelected(long tab) {
+	void TabSelected(long tab) { FocusTab(tab); }
+
+	void FocusTab(long tab) { 
 		for (int i = 0; i < panels.Length; i++) {
 			panels[i].Visible = false;
 		}
-		panels[tab].Visible = true;
+		panels[tab].Visible = true;	
 	}
 
 	void Back() => SceneManager.Load(mainMenuPath);

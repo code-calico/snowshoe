@@ -17,7 +17,7 @@ public partial class OptionsMenu : Control
 	}
 
 	public override void _Ready() {
-		FocusTab(0);
+		FocusPanel(0);
 		
 		back.ButtonUp += Back;
 		bar.TabChanged += TabSelected;

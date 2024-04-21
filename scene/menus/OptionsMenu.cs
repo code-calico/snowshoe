@@ -18,12 +18,13 @@ public partial class OptionsMenu : Control
 
 	public override void _Ready() {
 		FocusPanel(0);
-		
+
+		//listen for back  button and changing tab events
 		back.ButtonUp += Back;
 		bar.TabChanged += TabSelected;
 	}
 
-	void TabSelected(long tab) { FocusTab(tab); }
+	void TabSelected(long tab) { FocusPanel(tab); }
 
 	// make selected panel visible
 	void FocusPanel(long tab) {

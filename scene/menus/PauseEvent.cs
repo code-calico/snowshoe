@@ -1,21 +1,21 @@
 using Godot;
 using System;
-using System.Threading;
-
 
 public partial class PauseEvent : Node
 {
 	public override void _Ready() {
-		CheckPauseEvent();
+		CheckPauseEvent(GetTree().CurrentScene.SceneFilePath);
 		SceneManager.Get().SceneChanged += CheckPauseEvent;
 	}
 
-	private void CheckPauseEvent() {
-		GD.Print("test");
-		string scenePath = GetTree().CurrentScene.SceneFilePath;
+	private void CheckPauseEvent(string scenePath) {
 		string[] pathTokens = scenePath.Split("/");
 		string parentFolder = pathTokens[3];
-	}
-	
 
+		if (parentFolder == "level") {
+			GD.Print($"This scene is pausable. (scene folder variant: \"{parentFolder}\" == \"level\")");
+		} else {
+			GD.Print($"This scene is not pausable. (scene folder variant: \"{parentFolder}\" != \"level\")");
+		}
+	}
 }

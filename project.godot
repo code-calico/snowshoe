@@ -21,6 +21,7 @@ SceneManager="*res://src/utils/SceneManager.cs"
 ImGuiLayer="*res://addons/imgui-godot/ImGuiLayer.tscn"
 DiscordRPCLoader="*res://addons/discord-rpc-gd/nodes/discord_autoload.gd"
 DiscordRPCHandler="*res://src/global/discord_rpc_autoload.gd"
+PauseEvent="*res://scene/menus/PauseEvent.cs"
 
 [dotnet]
 

@@ -25,7 +25,8 @@ public partial class OptionsMenu : Control
 
 	void TabSelected(long tab) { FocusTab(tab); }
 
-	void FocusTab(long tab) { 
+	// make selected panel visible
+	void FocusPanel(long tab) {
 		for (int i = 0; i < panels.Length; i++) {
 			panels[i].Visible = false;
 		}

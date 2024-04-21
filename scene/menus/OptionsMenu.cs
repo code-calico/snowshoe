@@ -23,7 +23,7 @@ public partial class OptionsMenu : Control
 		bar.TabChanged += TabSelected;
 	}
 
-	void TabSelected(long tab) { FocusTab(tab); }
+	void TabSelected(long tab) { FocusPanel(tab); }
 
 	// make selected panel visible
 	void FocusPanel(long tab) {

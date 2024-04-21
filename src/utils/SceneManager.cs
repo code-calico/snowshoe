@@ -6,6 +6,9 @@ public partial class SceneManager : Node {
 
     public static SceneManager Instance { get; private set; }
 
+    [Signal]
+    public delegate void SceneChangedEventHandler();
+
     public override void _Ready() {
         if (Instance != null && Instance != this) {
             QueueFree();
@@ -18,7 +21,9 @@ public partial class SceneManager : Node {
         string pathToScene = ProjectSettings.GlobalizePath(scenePath);
 		PackedScene sceneResource = (PackedScene)ResourceLoader.Load(pathToScene);
 		Instance.GetTree().ChangeSceneToPacked(sceneResource);
+        Instance.EmitSignal(SignalName.SceneChanged);
     }
+
 
     public static SceneManager Get() => Instance;
     

@@ -1,0 +1,145 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbmqcwslvopfo"]
+
+[ext_resource type="Script" path="res://scene/menus/OptionsMenu.cs" id="1_d6etq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lcq7v"]
+
+[node name="OptionsMenu" type="Control" node_paths=PackedStringArray("back", "bar", "panels")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_d6etq")
+back = NodePath("Back")
+mainMenuPath = "res://scene/menus/title.tscn"
+bar = NodePath("Tabs")
+panels = [NodePath("Gameplay"), NodePath("Video"), NodePath("Audio"), NodePath("Controls")]
+
+[node name="BasePanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Gameplay" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameplayLabel" type="Label" parent="Gameplay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = -11.5
+offset_right = 70.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "GAMEPLAY PANEL"
+horizontal_alignment = 1
+
+[node name="Video" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VideoLabel" type="Label" parent="Video"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = -11.5
+offset_right = 70.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "VIDEO PANEL"
+horizontal_alignment = 1
+
+[node name="Audio" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AudioLabel" type="Label" parent="Audio"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -53.5
+offset_top = -11.5
+offset_right = 53.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "AUDIO PANEL"
+horizontal_alignment = 1
+
+[node name="Controls" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ControlsLabel" type="Label" parent="Controls"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = -11.5
+offset_right = 70.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "CONTROLS PANEL"
+horizontal_alignment = 1
+
+[node name="Tabs" type="TabBar" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 31.0
+grow_horizontal = 2
+theme_override_styles/tab_focus = SubResource("StyleBoxEmpty_lcq7v")
+tab_count = 4
+tab_alignment = 1
+tab_0/title = "Gameplay"
+tab_1/title = "Video"
+tab_2/title = "Audio"
+tab_3/title = "Controls"
+
+[node name="Back" type="Button" parent="."]
+layout_mode = 0
+offset_right = 72.0
+offset_bottom = 31.0
+text = " <- Back "

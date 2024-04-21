@@ -15,6 +15,7 @@ script = ExtResource("1_5cqiv")
 play = NodePath("VerticalArrangement/VerticalArrangement/Play")
 playScenePath = "res://scene/level/lvl-dev-test.tscn"
 options = NodePath("VerticalArrangement/VerticalArrangement/Options")
+optionsScenePath = "res://scene/menus/options.tscn"
 quit = NodePath("VerticalArrangement/VerticalArrangement/Quit")
 
 [node name="VerticalArrangement" type="VBoxContainer" parent="."]

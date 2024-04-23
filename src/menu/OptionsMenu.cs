@@ -9,7 +9,7 @@ public partial class OptionsMenu : CanvasLayer
 	[Export] Control panelHolder;
 	
 	Panel[] panels;
-	
+
 	public override void _Process(double delta) {
 		if (Input.IsActionJustPressed("ui_cancel")) { Back(); }
 	}

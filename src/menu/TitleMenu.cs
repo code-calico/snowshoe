@@ -16,7 +16,7 @@ public partial class TitleMenu : Control
 	[Export] Button quit;
 
 	public override void _Process(double delta) {
-		if (Input.IsActionJustPressed("ui_cancel")) {
+		if (Input.IsActionJustPressed("ui_cancel") && !HasNode("OptionsMenu")) {
 			Quit();
 		}
 	}

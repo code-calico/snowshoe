@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bbmqcwslvopfo"]
 
-[ext_resource type="Script" path="res://scene/menus/OptionsMenu.cs" id="1_d6etq"]
+[ext_resource type="Script" path="res://src/menu/OptionsMenu.cs" id="1_d6etq"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lcq7v"]
 

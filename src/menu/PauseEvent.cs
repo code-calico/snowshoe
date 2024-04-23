@@ -3,7 +3,19 @@ using System;
 
 public partial class PauseEvent : Node
 {
+
+	PackedScene optionsScene;
+	Node currentScene;
+
+	public override void _Process(double delta) {
+		if (Input.IsActionJustPressed("ui_cancel") && GetChildCount() < 1) {
+			AddChild(optionsScene.Instantiate());
+		}
+	}
+
 	public override void _Ready() {
+		optionsScene = GD.Load<PackedScene>("res://scene/menus/options.tscn");
+
 		CheckPauseEvent(GetTree().CurrentScene.SceneFilePath);
 		SceneManager.Get().SceneChanged += CheckPauseEvent;
 	}
@@ -12,10 +24,7 @@ public partial class PauseEvent : Node
 		string[] pathTokens = scenePath.Split("/");
 		string parentFolder = pathTokens[3];
 
-		if (parentFolder == "level") {
-			GD.Print($"This scene is pausable. (scene folder variant: \"{parentFolder}\" == \"level\")");
-		} else {
-			GD.Print($"This scene is not pausable. (scene folder variant: \"{parentFolder}\" != \"level\")");
-		}
+		bool isLevel = parentFolder == "level";
+		SetProcess(isLevel);
 	}
 }

@@ -8,12 +8,15 @@ public partial class PauseEvent : Node
 	Node currentScene;
 
 	public override void _Process(double delta) {
+		// the user pressed a ui cancel event and it doesn't already have a menu instantiated
 		if (Input.IsActionJustPressed("ui_cancel") && GetChildCount() < 1) {
+			// this finally instantiates the scene and adds it to the scene tree
 			AddChild(optionsScene.Instantiate());
 		}
 	}
 
 	public override void _Ready() {
+		// this loads a packed scene resource, it is not an instantiated scene
 		optionsScene = GD.Load<PackedScene>("res://scene/menus/options.tscn");
 
 		CheckPauseEvent(GetTree().CurrentScene.SceneFilePath);
@@ -25,6 +28,8 @@ public partial class PauseEvent : Node
 		string parentFolder = pathTokens[3];
 
 		bool isLevel = parentFolder == "level";
+		
+		// sets the _Process function to be enabled or disabled based on the scene type
 		SetProcess(isLevel);
 	}
 }

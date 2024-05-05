@@ -1,6 +1,4 @@
 using Godot;
-using System;
-using System.Collections.Generic;
 
 public partial class OptionsMenu : CanvasLayer
 {
@@ -39,7 +37,11 @@ public partial class OptionsMenu : CanvasLayer
 		panels[tab].Visible = true;	
 	}
 
-	void Back() => QueueFree();
+	void Back()
+	{
+		GetTree().Paused = false;
+		QueueFree();
+	}
 }
 
 

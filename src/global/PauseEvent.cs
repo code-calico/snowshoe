@@ -9,16 +9,17 @@ public partial class PauseEvent : Node
 
 	public override void _Process(double delta)
 	{
-		// the user pressed a ui cancel event and it doesn't already have a menu instantiated
 		if (Input.IsActionJustPressed("ui_cancel"))
 		{
+			// check if the user has a menu open
 			if (GetChildCount() < 1)
 			{
 				AddChild(optionsScene.Instantiate());
+				GetTree().Paused = true;
 			}
-			// this finally instantiates the scene and adds it to the scene tree
-			GetTree().Paused = !GetTree().Paused;
 		}
+		//GetTree().Paused = !GetTree().Paused;
+		GD.Print(GetTree().Paused);
 	}
 
 	public override void _Ready() {
@@ -27,7 +28,9 @@ public partial class PauseEvent : Node
 
 		CheckPauseEvent(GetTree().CurrentScene.SceneFilePath);
 		SceneManager.Get().SceneChanged += CheckPauseEvent;
+
 	}
+
 
 	private void CheckPauseEvent(string scenePath) {
 		string[] pathTokens = scenePath.Split("/");

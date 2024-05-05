@@ -39,7 +39,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Gameplay" type="Panel" parent="ControlParent/PanelHolder"]
-process_mode = 2
+process_mode = 3
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -139,7 +139,7 @@ text = "CONTROLS PANEL"
 horizontal_alignment = 1
 
 [node name="Bar" type="TabBar" parent="ControlParent"]
-process_mode = 2
+process_mode = 3
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -154,7 +154,7 @@ tab_2/title = "Audio"
 tab_3/title = "Controls"
 
 [node name="Back" type="Button" parent="ControlParent"]
-process_mode = 2
+process_mode = 3
 layout_mode = 0
 offset_right = 72.0
 offset_bottom = 31.0

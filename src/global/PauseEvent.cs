@@ -9,7 +9,7 @@ public partial class PauseEvent : Node
 
 	public override void _Process(double delta)
 	{
-		if (Input.IsActionJustPressed("ui_cancel"))
+		if (Input.IsActionJustPressed("pause_game"))
 		{
 			// check if the user has a menu open
 			if (GetChildCount() < 1)

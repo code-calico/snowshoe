@@ -7,12 +7,16 @@ public partial class PauseEvent : Node
 	PackedScene optionsScene;
 	Node currentScene;
 
-	public override void _Process(double delta) {
+	public override void _Process(double delta)
+	{
 		// the user pressed a ui cancel event and it doesn't already have a menu instantiated
-		if (Input.IsActionJustPressed("ui_cancel") && GetChildCount() < 1)
+		if (Input.IsActionJustPressed("ui_cancel"))
 		{
+			if (GetChildCount() < 1)
+			{
+				AddChild(optionsScene.Instantiate());
+			}
 			// this finally instantiates the scene and adds it to the scene tree
-			AddChild(optionsScene.Instantiate());
 			GetTree().Paused = !GetTree().Paused;
 		}
 	}

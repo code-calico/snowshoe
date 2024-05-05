@@ -1,22 +1,25 @@
 using Godot;
-using System;
-using System.Collections.Generic;
 
-public partial class OptionsMenu : Control
+public partial class OptionsMenu : CanvasLayer
 {
-	[ExportGroup("Back Button")]
-	[Export] Button back;
-	[Export(PropertyHint.File, ".tscn")] string mainMenuPath;
-	
+	[Export] Button back;	
 	[Export] TabBar bar;
-	[Export] Panel[] panels;
+	[Export] Control panelHolder;
 	
+	Panel[] panels;
 
 	public override void _Process(double delta) {
 		if (Input.IsActionJustPressed("ui_cancel")) { Back(); }
 	}
 
 	public override void _Ready() {
+		int panelCount = panelHolder.GetChildCount();
+		panels = new Panel[panelCount];
+
+		for (int i = 0; i < panels.Length; i++) {
+			panels[i] = panelHolder.GetChild<Panel>(i);
+		}
+
 		FocusPanel(0);
 
 		//listen for back  button and changing tab events
@@ -34,7 +37,11 @@ public partial class OptionsMenu : Control
 		panels[tab].Visible = true;	
 	}
 
-	void Back() => SceneManager.Load(mainMenuPath);
+	void Back()
+	{
+		GetTree().Paused = false;
+		QueueFree();
+	}
 }
 
 

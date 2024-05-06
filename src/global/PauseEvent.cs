@@ -21,8 +21,6 @@ public partial class PauseEvent : Node
 				// tbh this code is so fucking bad, it is hard coded to free the menu instance
 				// someone please fix this :3
 
-				GD.Print(GetChildCount());
-
 				if (GetChildCount() == 1) {
 					pauseSceneInstance.QueueFree();
 				} else if (GetChildCount() == 2) {

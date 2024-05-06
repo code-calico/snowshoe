@@ -20,7 +20,6 @@ public partial class PauseEvent : Node
 				optionsSceneInstance.QueueFree();
 			}
 		}
-		// GD.Print(GetTree().Paused);
 	}
 
 	public override void _Ready() {

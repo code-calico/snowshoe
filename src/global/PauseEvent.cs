@@ -16,11 +16,9 @@ public partial class PauseEvent : Node
 				AddChild(pauseScene.Instantiate());
 				GetTree().Paused = true;
 			} else {
-				GD.Print("more than zero");
 				Node pauseSceneInstance = GetChild(0);
 				pauseSceneInstance.QueueFree();
 			}
-			GD.Print(GetChildCount());
 		}
 	}
 

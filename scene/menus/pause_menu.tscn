@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://buuklfmtsshtl"]
+[gd_scene load_steps=3 format=3 uid="uid://buuklfmtsshtl"]
 
 [ext_resource type="Script" path="res://src/menu/PauseMenu.cs" id="1_0g0th"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4f7i5"]
+bg_color = Color(0, 0, 0, 0.882353)
 
 [node name="PauseMenu" type="CanvasLayer" node_paths=PackedStringArray("resume", "options", "title", "desktop")]
 script = ExtResource("1_0g0th")
@@ -24,6 +27,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4f7i5")
 
 [node name="VBox" type="VBoxContainer" parent="Control/BasePanel"]
 layout_mode = 1

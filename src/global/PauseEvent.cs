@@ -7,19 +7,20 @@ public partial class PauseEvent : Node
 	PackedScene optionsScene;
 	Node currentScene;
 
-	public override void _Process(double delta)
-	{
-		if (Input.IsActionJustPressed("pause_game"))
-		{
-			// check if the user has a menu open
-			if (GetChildCount() < 1)
-			{
+	public override void _Process(double delta) {
+		
+		if (Input.IsActionJustPressed("pause_game")) {
+			
+			// if there is no menu open, else 
+			if (GetChildCount() < 1) {
 				AddChild(optionsScene.Instantiate());
 				GetTree().Paused = true;
+			} else {
+				Node optionsSceneInstance = GetChild(0);
+				optionsSceneInstance.QueueFree();
 			}
 		}
-		//GetTree().Paused = !GetTree().Paused;
-		GD.Print(GetTree().Paused);
+		// GD.Print(GetTree().Paused);
 	}
 
 	public override void _Ready() {
@@ -30,6 +31,8 @@ public partial class PauseEvent : Node
 		SceneManager.Get().SceneChanged += CheckPauseEvent;
 
 	}
+
+	
 
 
 	private void CheckPauseEvent(string scenePath) {

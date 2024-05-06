@@ -8,6 +8,7 @@ bg_color = Color(0, 0, 0, 1)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lcq7v"]
 
 [node name="OptionsMenu" type="CanvasLayer" node_paths=PackedStringArray("back", "bar", "panelHolder")]
+process_mode = 3
 script = ExtResource("1_d6etq")
 back = NodePath("ControlParent/Back")
 bar = NodePath("ControlParent/Bar")

@@ -41,6 +41,7 @@ grow_vertical = 2
 
 [node name="Gameplay" type="Panel" parent="ControlParent/PanelHolder"]
 process_mode = 3
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -65,7 +66,6 @@ text = "GAMEPLAY PANEL"
 horizontal_alignment = 1
 
 [node name="Video" type="Panel" parent="ControlParent/PanelHolder"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -73,21 +73,75 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VideoLabel" type="Label" parent="ControlParent/PanelHolder/Video"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -70.0
-offset_top = -11.5
-offset_right = 70.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "VIDEO PANEL"
-horizontal_alignment = 1
+[node name="VideoVBox" type="VBoxContainer" parent="ControlParent/PanelHolder/Video"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 39.0
+offset_right = 411.0
+offset_bottom = 583.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ControlParent/PanelHolder/Video/VideoVBox"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[font_size=10][i]⚠️warning: logic is not currently integrated ⚠️[/i]"
+fit_content = true
+
+[node name="Resolution" type="HBoxContainer" parent="ControlParent/PanelHolder/Video/VideoVBox"]
+layout_mode = 2
+
+[node name="ResolutionLabel" type="Label" parent="ControlParent/PanelHolder/Video/VideoVBox/Resolution"]
+layout_mode = 2
+text = "Resolution: "
+
+[node name="OptionButton" type="OptionButton" parent="ControlParent/PanelHolder/Video/VideoVBox/Resolution"]
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 1
+selected = 0
+popup/item_0/text = "1920x1080"
+popup/item_0/id = 0
+
+[node name="Fullscreen" type="HBoxContainer" parent="ControlParent/PanelHolder/Video/VideoVBox"]
+layout_mode = 2
+
+[node name="FullscreenLabel" type="Label" parent="ControlParent/PanelHolder/Video/VideoVBox/Fullscreen"]
+layout_mode = 2
+text = "Fullscreen: "
+
+[node name="OptionButton" type="OptionButton" parent="ControlParent/PanelHolder/Video/VideoVBox/Fullscreen"]
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 3
+selected = 0
+popup/item_0/text = "Bordered"
+popup/item_0/id = 0
+popup/item_1/text = "Borderless Fullscreen"
+popup/item_1/id = 1
+popup/item_2/text = "Fullscreen"
+popup/item_2/id = 2
+
+[node name="FPS" type="HBoxContainer" parent="ControlParent/PanelHolder/Video/VideoVBox"]
+layout_mode = 2
+
+[node name="FPSLabel" type="Label" parent="ControlParent/PanelHolder/Video/VideoVBox/FPS"]
+layout_mode = 2
+text = "Frame Rate: 
+"
+
+[node name="SpinBox" type="SpinBox" parent="ControlParent/PanelHolder/Video/VideoVBox/FPS"]
+layout_mode = 2
+size_flags_horizontal = 3
+value = 60.0
+suffix = "fps"
+
+[node name="VSeparator" type="VSeparator" parent="ControlParent/PanelHolder/Video/VideoVBox/FPS"]
+layout_mode = 2
+
+[node name="VSync" type="CheckButton" parent="ControlParent/PanelHolder/Video/VideoVBox/FPS"]
+layout_mode = 2
+size_flags_horizontal = 8
+button_pressed = true
+text = "Vsync"
 
 [node name="Audio" type="Panel" parent="ControlParent/PanelHolder"]
 visible = false
@@ -156,7 +210,7 @@ tab_3/title = "Controls"
 
 [node name="Back" type="Button" parent="ControlParent"]
 process_mode = 3
-layout_mode = 0
+layout_mode = 1
 offset_right = 72.0
 offset_bottom = 31.0
 text = " <- Back "

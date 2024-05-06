@@ -1,0 +1,55 @@
+[gd_scene load_steps=2 format=3 uid="uid://b81mlelwhamwy"]
+
+[ext_resource type="Script" path="res://src/menu/TitleMenu.cs" id="1_5cqiv"]
+
+[node name="TitleMenu" type="Control" node_paths=PackedStringArray("play", "options", "quit")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5cqiv")
+play = NodePath("VerticalArrangement/VerticalArrangement/Play")
+playScenePath = "res://scene/level/lvl-dev-test.tscn"
+options = NodePath("VerticalArrangement/VerticalArrangement/Options")
+optionsScenePath = "res://scene/menus/options.tscn"
+quit = NodePath("VerticalArrangement/VerticalArrangement/Quit")
+
+[node name="VerticalArrangement" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VerticalArrangement"]
+clip_contents = false
+layout_mode = 2
+bbcode_enabled = true
+text = "[center] [b] snowshoe [/b] 
+[wave freq=10][rainbow freq=0.1 sat=0.5] now with 100% more invisible colliders[/rainbow][/wave][/center]"
+fit_content = true
+
+[node name="VerticalArrangement" type="VBoxContainer" parent="VerticalArrangement"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Play" type="Button" parent="VerticalArrangement/VerticalArrangement"]
+layout_mode = 2
+text = "Play
+"
+
+[node name="Options" type="Button" parent="VerticalArrangement/VerticalArrangement"]
+layout_mode = 2
+text = "Options
+"
+
+[node name="Quit" type="Button" parent="VerticalArrangement/VerticalArrangement"]
+layout_mode = 2
+text = "Quit
+"

@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://dmkx4tqqxb1c0" path="res://art/grass.png" id="2_7v1fc"]
 [ext_resource type="Texture2D" uid="uid://bs6kihpd4y5pa" path="res://art/rock.png" id="3_f7f5j"]
 [ext_resource type="Texture2D" uid="uid://bqibcxx0id72t" path="res://art/rockondirt.png" id="4_dnxo8"]
-
 [sub_resource type="TileMapPattern" id="TileMapPattern_3ao85"]
 tile_data = PackedInt32Array(0, 65537, 1, 65536, 65537, 4, 131072, 196609, 4, 1, 262145, 1, 65537, 393217, 2, 131073, 327681, 2, 196609, 196609, 4, 2, 262145, 3, 65538, 131073, 5, 131074, 131073, 6, 196610, 196609, 7, 65539, 262145, 1, 131075, 393217, 3, 196611, 327681, 2, 262147, 196609, 4, 65540, 262145, 3, 131076, 131073, 5, 196612, 393217, 2, 262148, 196609, 7, 131077, 262145, 3, 196613, 131073, 4, 262149, 131073, 2)
 

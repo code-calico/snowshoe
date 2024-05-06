@@ -4,7 +4,7 @@ using System;
 public partial class PauseEvent : Node
 {
 
-	PackedScene optionsScene;
+	PackedScene pauseScene;
 	Node currentScene;
 
 	public override void _Process(double delta) {
@@ -13,26 +13,26 @@ public partial class PauseEvent : Node
 			
 			// if there is no menu open, else 
 			if (GetChildCount() < 1) {
-				AddChild(optionsScene.Instantiate());
+				AddChild(pauseScene.Instantiate());
 				GetTree().Paused = true;
 			} else {
-				Node optionsSceneInstance = GetChild(0);
-				optionsSceneInstance.QueueFree();
+				GD.Print("more than zero");
+				Node pauseSceneInstance = GetChild(0);
+				pauseSceneInstance.QueueFree();
 			}
+			GD.Print(GetChildCount());
 		}
 	}
 
 	public override void _Ready() {
 		// this loads a packed scene resource, it is not an instantiated scene
-		optionsScene = GD.Load<PackedScene>("res://scene/menus/options.tscn");
+		ProcessMode = Node.ProcessModeEnum.Always;
+		pauseScene = GD.Load<PackedScene>("res://scene/menus/pause_menu.tscn");
 
 		CheckPauseEvent(GetTree().CurrentScene.SceneFilePath);
 		SceneManager.Get().SceneChanged += CheckPauseEvent;
 
 	}
-
-	
-
 
 	private void CheckPauseEvent(string scenePath) {
 		string[] pathTokens = scenePath.Split("/");

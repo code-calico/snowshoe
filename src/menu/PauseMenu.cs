@@ -21,7 +21,9 @@ public partial class PauseMenu : CanvasLayer
 
 	void Options() {
 		PackedScene optionsScene = GD.Load<PackedScene>("res://scene/menus/options.tscn");
-		AddChild(optionsScene.Instantiate());
+		
+		// godot people would have an aneurysm at this getparent call, this is not idiomatic, consider changing
+		GetParent().AddChild(optionsScene.Instantiate());
 	}
 
 	void Desktop() => GetTree().Quit();

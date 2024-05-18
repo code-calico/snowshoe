@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bbmqcwslvopfo"]
 
-[ext_resource type="Script" path="res://src/menu/OptionsMenu.cs" id="1_d6etq"]
+[ext_resource type="Script" path="res://src/menu/OptionsMenu.cs" id="1_ohrr3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ml7b"]
 bg_color = Color(0, 0, 0, 1)
@@ -9,7 +9,7 @@ bg_color = Color(0, 0, 0, 1)
 
 [node name="OptionsMenu" type="CanvasLayer" node_paths=PackedStringArray("back", "bar", "panelHolder")]
 process_mode = 3
-script = ExtResource("1_d6etq")
+script = ExtResource("1_ohrr3")
 back = NodePath("ControlParent/Back")
 bar = NodePath("ControlParent/Bar")
 panelHolder = NodePath("ControlParent/PanelHolder")

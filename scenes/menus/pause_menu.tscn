@@ -1,12 +1,12 @@
 [gd_scene load_steps=3 format=3 uid="uid://5uti26uk3unv"]
 
-[ext_resource type="Script" path="res://src/menu/PauseMenu.cs" id="1_0g0th"]
+[ext_resource type="Script" path="res://src/menu/PauseMenu.cs" id="1_g7vbx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4f7i5"]
 bg_color = Color(0, 0, 0, 0.882353)
 
 [node name="PauseMenu" type="CanvasLayer" node_paths=PackedStringArray("resume", "options", "title", "desktop")]
-script = ExtResource("1_0g0th")
+script = ExtResource("1_g7vbx")
 resume = NodePath("Control/BasePanel/VBox/Resume")
 options = NodePath("Control/BasePanel/VBox/Options")
 title = NodePath("Control/BasePanel/VBox/Title")

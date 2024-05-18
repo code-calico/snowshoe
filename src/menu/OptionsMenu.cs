@@ -37,10 +37,9 @@ public partial class OptionsMenu : CanvasLayer
 		panels[tab].Visible = true;	
 	}
 
-	void Back()
-	{
+	void Back() {
 		GetTree().Paused = false;
-		QueueFree();
+		Hide();
 	}
 }
 

@@ -3,34 +3,33 @@ using System;
 
 public partial class TitleMenu : Control
 {
-	[ExportGroup("Play Button")]
-	[Export] Button play; 
-	[Export(PropertyHint.File, "*.tscn")] string playScenePath;
-
-	[ExportGroup("Options Button")]
-	[Export] Button options;
-	[Export(PropertyHint.File, ".tscn")] string optionsScenePath;
-	PackedScene optionsScene;
-
-	[ExportGroup("Quit Button")]
-	[Export] Button quit;
-
-	public override void _Process(double delta) {
-		if (Input.IsActionJustPressed("ui_cancel") && !HasNode("OptionsMenu")) {
-			Quit();
-		}
-	}
+	Button play; 
+	Button options;
+	Button quit;
+	
+	CanvasLayer optionsMenu;
+	
+	[Export] string playScenePath = "res://scenes/levels/dev/lvl-dev-test.tscn";
+	[Export] string optionsScenePath = "res://scenes/menus/options.tscn";
 
 	public override void _Ready() {
-		optionsScene = GD.Load<PackedScene>(optionsScenePath);
+		// getting references to nodes using scene unique names, this is pretty common in gdscript but it feels kinda weird in c# 
+		play = GetNode<Button>("%Play");
+		options = GetNode<Button>("%Options");
+		quit = GetNode<Button>("%Quit");
+		optionsMenu = GetNode<CanvasLayer>("%OptionsMenu");
 	
-		if (play != null && playScenePath != null) { play.ButtonUp += Play; } 
-		if (options != null && optionsScenePath != null) { options.ButtonUp += Options; }
-		if (quit != null) { quit.ButtonUp += Quit; } 
+		// subscribes using an anonymous function, just to supply it with the scene path 
+		play.ButtonUp += () => SceneManager.Load(playScenePath);
+		// makes the options menu visible and process input events using the show() function on the canvas layer node
+		options.ButtonUp += optionsMenu.Show; 
+		quit.ButtonUp += SceneManager.QuitToDesktop;  
 	}
 
-	private void Play() => SceneManager.Load(playScenePath); 
-	private void Options() { AddChild(optionsScene.Instantiate()); }
-	private void Quit() => GetTree().Quit();
-
+	public override void _Process(double delta) {
+		if (Input.IsActionJustPressed("ui_cancel") && !optionsMenu.Visible) {
+			SceneManager.QuitToDesktop();
+		}
+	}
+	
 }

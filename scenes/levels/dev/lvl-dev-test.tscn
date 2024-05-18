@@ -1,15 +1,15 @@
 [gd_scene load_steps=7 format=3 uid="uid://f6wt5we1fksa"]
 
-[ext_resource type="Script" path="res://src/character/CharacterController.cs" id="1_oml7s"]
-[ext_resource type="Texture2D" uid="uid://dopio6ttycrca" path="res://art/DIRT.png" id="2_dphp0"]
-[ext_resource type="Script" path="res://addons/snowshoe-dbg/CharacterDebugger.cs" id="2_wnhmc"]
+[ext_resource type="Script" path="res://src/character/CharacterController.cs" id="1_rgwfc"]
+[ext_resource type="Script" path="res://addons/snowshoe-dbg/CharacterDebugger.cs" id="2_ud8dx"]
+[ext_resource type="Texture2D" uid="uid://dopio6ttycrca" path="res://art/tiles/DIRT.png" id="3_3sb4m"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qj7hi"]
 radius = 25.0
 height = 80.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ceijf"]
-texture = ExtResource("2_dphp0")
+texture = ExtResource("3_3sb4m")
 texture_region_size = Vector2i(8, 8)
 0:0/0 = 0
 0:0/0/terrain_set = 0
@@ -93,7 +93,7 @@ sources/0 = SubResource("TileSetAtlasSource_ceijf")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 position = Vector2(574, 350)
-script = ExtResource("1_oml7s")
+script = ExtResource("1_rgwfc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 shape = SubResource("CapsuleShape2D_qj7hi")
@@ -109,7 +109,7 @@ drag_vertical_enabled = true
 target_position = Vector2(0, 64)
 
 [node name="CharacterDebug" type="Node2D" parent="CharacterBody2D"]
-script = ExtResource("2_wnhmc")
+script = ExtResource("2_ud8dx")
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2(4, 4)

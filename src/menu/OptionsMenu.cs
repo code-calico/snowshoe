@@ -15,24 +15,10 @@ public partial class OptionsMenu : CanvasLayer
 	}
 
 	public override void _Ready() {
-		backButton = GetNode<Button>("%BackButton");
-		tabBar = GetNode<TabBar>("%TabBar");
-		panelHolder = GetNode<Control>("%PanelHolder");
-		
-		int panelCount = panelHolder.GetChildCount();
-		panels = new Panel[panelCount];
-
-		for (int i = 0; i < panels.Length; i++) {
-			panels[i] = panelHolder.GetChild<Panel>(i);
-		}
-
-		FocusPanel(0);
-
-		// event subscription
-		backButton.ButtonUp += Hide;
-		tabBar.TabChanged += FocusPanel;
+		InitReferences();
+		InitPanels();
+		InitSubscriptions();
 	}
-
 
 	// hide all panels and turn the new panel visible
 	void FocusPanel(long tab) {
@@ -41,6 +27,30 @@ public partial class OptionsMenu : CanvasLayer
 		}
 		panels[tab].Visible = true;	
 	}
+
+	void InitReferences() {
+		backButton = GetNode<Button>("%BackButton");
+		tabBar = GetNode<TabBar>("%TabBar");
+		panelHolder = GetNode<Control>("%PanelHolder");
+	}
+
+	void InitPanels() {
+		int panelCount = panelHolder.GetChildCount();
+		panels = new Panel[panelCount];
+
+		for (int i = 0; i < panels.Length; i++) {
+			panels[i] = panelHolder.GetChild<Panel>(i);
+		}
+
+		FocusPanel(0);
+	}
+
+	void InitSubscriptions() {
+		backButton.ButtonUp += Hide;
+		tabBar.TabChanged += FocusPanel;
+	}
+
+
 }
 
 

@@ -2,36 +2,53 @@ using Godot;
 
 public partial class PauseMenu : CanvasLayer
 {
-	[Export] Button resume;
-	[Export] Button options;
-	[Export] Button title;
-	[Export] Button desktop;
+	
+	[Export] bool isVisibleOnStart;
+
+	Button resume;
+	Button options;
+	Button title;
+	Button quit;
+
+	CanvasLayer optionsMenu;
+
+	bool paused = false;
 	
 	public override void _Ready() {
-		resume.ButtonUp += Resume;
-		options.ButtonUp += Options;
-		title.ButtonUp += Title;
-		desktop.ButtonDown += Desktop;
+		InitReferences();
+		InitSubscriptions();
+		Visible = isVisibleOnStart;
 	}
 
-	void Resume() {
-		GetTree().Paused = false;
-		QueueFree();
+	public override void _Process(double delta) {
+		if (Input.IsActionJustPressed("ui_cancel") && !optionsMenu.Visible) {
+			Visible = !Visible;
+		}
 	}
 
-	void Options() {
-		PackedScene optionsScene = GD.Load<PackedScene>("res://scene/menus/options.tscn");
+	void InitReferences() {
+		resume = GetNode<Button>("%Resume");
+		options = GetNode<Button>("%Options");
+		title = GetNode<Button>("%Title");
+		quit = GetNode<Button>("%Quit");
+		optionsMenu = GetNode<CanvasLayer>("%OptionsMenu");
+	}
+
+	void InitSubscriptions() {
+		resume.ButtonUp += () => {
+			GetTree().Paused = false;
+			Hide();
+		};
+
+		options.ButtonUp += optionsMenu.Show;
 		
-		// godot people would have an aneurysm at this getparent call, this is not idiomatic, consider changing
-		GetParent().AddChild(optionsScene.Instantiate());
+		title.ButtonUp += () => {
+			GetTree().Paused = false;
+			SceneManager.Load("res://scenes/menus/title.tscn");
+		};
+		
+		quit.ButtonDown += SceneManager.QuitToDesktop;
 	}
-
-	void Desktop() => GetTree().Quit();
-	void Title() {
-		QueueFree();
-		GetTree().Paused = false;
-		SceneManager.Load("res://scene/menus/title.tscn");
-	} 
 }
 
 

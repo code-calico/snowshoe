@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dqyt4nsd26o4i"
-path="res://.godot/imported/dirt-full.png-d62dc08426aaf0ceabbb3fe80bb382bb.ctex"
+uid="uid://ce2b4nhhftum2"
+path="res://.godot/imported/code-calico-icon.png-8945d8c9eaacd530674b833a877705ed.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/dirt-full.png"
-dest_files=["res://.godot/imported/dirt-full.png-d62dc08426aaf0ceabbb3fe80bb382bb.ctex"]
+source_file="res://art/icons/code-calico-icon.png"
+dest_files=["res://.godot/imported/code-calico-icon.png-8945d8c9eaacd530674b833a877705ed.ctex"]
 
 [params]
 

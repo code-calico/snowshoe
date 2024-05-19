@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvxne21t01jre"
-path="res://.godot/imported/template.png-955e1737d489699f7be9f97775c6625a.ctex"
+uid="uid://bqibcxx0id72t"
+path="res://.godot/imported/rockondirt.png-14f6adce098748f8fe1df65f2fed3321.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/template.png"
-dest_files=["res://.godot/imported/template.png-955e1737d489699f7be9f97775c6625a.ctex"]
+source_file="res://art/tiles/rockondirt.png"
+dest_files=["res://.godot/imported/rockondirt.png-14f6adce098748f8fe1df65f2fed3321.ctex"]
 
 [params]
 

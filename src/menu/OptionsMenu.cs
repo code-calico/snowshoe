@@ -2,17 +2,39 @@ using Godot;
 
 public partial class OptionsMenu : CanvasLayer
 {
-	[Export] Button back;	
-	[Export] TabBar bar;
-	[Export] Control panelHolder;
+	Button backButton;	
+	TabBar tabBar;
+	Control panelHolder;
 	
 	Panel[] panels;
 
 	public override void _Process(double delta) {
-		if (Input.IsActionJustPressed("ui_cancel")) { Back(); }
+		if (Input.IsActionJustPressed("ui_cancel")) { 
+			Hide(); 
+		}
 	}
 
 	public override void _Ready() {
+		InitReferences();
+		InitPanels();
+		InitSubscriptions();
+	}
+
+	// hide all panels and turn the new panel visible
+	void FocusPanel(long tab) {
+		for (int i = 0; i < panels.Length; i++) {
+			panels[i].Visible = false;
+		}
+		panels[tab].Visible = true;	
+	}
+
+	void InitReferences() {
+		backButton = GetNode<Button>("%BackButton");
+		tabBar = GetNode<TabBar>("%TabBar");
+		panelHolder = GetNode<Control>("%PanelHolder");
+	}
+
+	void InitPanels() {
 		int panelCount = panelHolder.GetChildCount();
 		panels = new Panel[panelCount];
 
@@ -21,27 +43,14 @@ public partial class OptionsMenu : CanvasLayer
 		}
 
 		FocusPanel(0);
-
-		//listen for back  button and changing tab events
-		back.ButtonUp += Back;
-		bar.TabChanged += TabSelected;
 	}
 
-	void TabSelected(long tab) { FocusPanel(tab); }
-
-	// make selected panel visible
-	void FocusPanel(long tab) {
-		for (int i = 0; i < panels.Length; i++) {
-			panels[i].Visible = false;
-		}
-		panels[tab].Visible = true;	
+	void InitSubscriptions() {
+		backButton.ButtonUp += Hide;
+		tabBar.TabChanged += FocusPanel;
 	}
 
-	void Back()
-	{
-		GetTree().Paused = false;
-		QueueFree();
-	}
+
 }
 
 

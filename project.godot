@@ -11,9 +11,9 @@ config_version=5
 [application]
 
 config/name="snowshoe"
-run/main_scene="res://scene/menus/title.tscn"
+run/main_scene="res://scenes/menus/title.tscn"
 config/features=PackedStringArray("4.2", "C#", "GL Compatibility")
-config/icon="res://art/icon.svg"
+config/icon="res://art/icons/code-calico-icon.png"
 
 [autoload]
 
@@ -21,7 +21,6 @@ ImGuiLayer="*res://addons/imgui-godot/ImGuiLayer.tscn"
 DiscordRPCLoader="*res://addons/discord-rpc-gd/nodes/discord_autoload.gd"
 DiscordRPCHandler="*res://src/global/discord_rpc_autoload.gd"
 SceneManager="*res://src/global/SceneManager.cs"
-PauseEvent="*res://src/global/PauseEvent.cs"
 
 [dotnet]
 
@@ -30,6 +29,16 @@ project/assembly_name="snowshoe"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/discord-rpc-gd/plugin.cfg", "res://addons/imgui-godot/plugin.cfg", "res://addons/snowshoe-dbg/plugin.cfg")
+
+[file_customization]
+
+folder_colors={
+"res://addons/": "red",
+"res://art/": "orange",
+"res://res/": "yellow",
+"res://scenes/": "green",
+"res://src/": "blue"
+}
 
 [input]
 

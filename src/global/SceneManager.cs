@@ -17,12 +17,31 @@ public partial class SceneManager : Node {
 		}
 	}
 
-	public static void Load(string scenePath) {
+	public static async void Load(string scenePath) {
 		string pathToScene = ProjectSettings.GlobalizePath(scenePath);
 		PackedScene sceneResource = (PackedScene)ResourceLoader.Load(pathToScene);
+		
+		// instantiating a scene transition instance
+		PackedScene transition = GD.Load<PackedScene>("res://scenes/transitions/fade_transition.tscn");
+		Node transitionInstance = transition.Instantiate();
+		Instance.AddChild(transitionInstance);
+		AnimationPlayer animPlayer = transitionInstance.GetNode<AnimationPlayer>("%AnimationPlayer");
+		
+		// fade in 
+		animPlayer.Play("fade");
+		await animPlayer.ToSignal(animPlayer, "animation_finished");
+		
+		// switch scene
 		Instance.GetTree().ChangeSceneToPacked(sceneResource);
+		animPlayer.PlayBackwards("fade");
+		
+		// fade out
+		await animPlayer.ToSignal(animPlayer, "animation_finished");
+		transitionInstance.QueueFree();
+		
 		Instance.EmitSignal(SignalName.SceneChanged, scenePath);
 	}
+
 
 	public static void QuitToDesktop() => Instance.GetTree().Quit();
 

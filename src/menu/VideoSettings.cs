@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public partial class VideoSettings : Panel
 {
@@ -8,48 +9,83 @@ public partial class VideoSettings : Panel
 	OptionButton fullscreenSelector;
 	OptionButton vsyncSelector;
 	SpinBox fpsSelector;
+	Button resetButton;
 
+	ConfigFile videoConfig = new ConfigFile();
+	
+	const string configPath = "user://video.cfg";
+	
+	const int defaultResolution = 20;
+	const int defaultFullScreen = 0;
+	const int defaultVSync = 0;
+	const int defaultFPS = 60;
 
 	public override void _Ready() {
 		InitReferences();
 
-		InitOptionsButton(resolutionSelector, ResolutionOptions.GetStringArray(), 20);
-		InitOptionsButton(fullscreenSelector, FullscreenOptions.GetStringArray(), 0);
-		InitOptionsButton(vsyncSelector, VSyncOptions.GetStringArray(), 0);
-		fpsSelector.Value = 60;
+		videoConfig.Load(configPath);
+			
+		InitOptionsButton (
+			resolutionSelector, 
+			ResolutionOptions.GetStringArray(),
+			videoConfig.GetValue("video", "resolution", defaultResolution).AsInt32()
+		);
+
+		InitOptionsButton (
+			fullscreenSelector, 
+			FullscreenOptions.GetStringArray(), 
+			videoConfig.GetValue("video", "fullscreenMode", defaultFullScreen).AsInt32()
+		);
+
+		InitOptionsButton (
+			vsyncSelector, 
+			VSyncOptions.GetStringArray(), 
+			videoConfig.GetValue("video", "vsyncMode", defaultVSync).AsInt32()
+		);
+
+		fpsSelector.Value = videoConfig.GetValue("video", "maxFPS", defaultFPS).AsInt32();
 		
 		InitSubscriptions();
 	}
 	
 	void InitSubscriptions() {
 
-	var config = new ConfigFile();
 		resolutionSelector.ItemSelected += (long idx) => {
 			Vector2I resolution = ResolutionOptions.GetArray()[(int)idx];
 			DisplayServer.WindowSetSize(resolution);
-			config.SetValue("video", "resolution", resolution);
-		config.Save("user://video.cfg");
+			ConfigWrite("resolution", (int)idx);
 		};
 
 		fullscreenSelector.ItemSelected += (long idx) => { 
 			DisplayServer.WindowMode fullscreenMode = FullscreenOptions.GetArray()[(int)idx]; 
 			DisplayServer.WindowSetMode(fullscreenMode);
-			//very very hacky so sorry to whoever reads this
-		string currentFullscreenMode = Convert.ToString(fullscreenMode);
-			config.SetValue("video", "fullscreenMode", currentFullscreenMode);
-		config.Save("user://video.cfg");
+			ConfigWrite("fullscreenMode", (int)idx);
 		};
 
 		vsyncSelector.ItemSelected += (long idx) => { 
 			DisplayServer.VSyncMode vsyncMode = VSyncOptions.GetArray()[(int)idx];
 			DisplayServer.WindowSetVsyncMode(vsyncMode);
-			string currentVsyncMode = Convert.ToString(vsyncMode);
-			config.SetValue("video", "vsyncMode", currentVsyncMode);
-			//may allah forgive me for the absolute dogshit way i've implemented this
-		config.Save("user://video.cfg");
+			ConfigWrite("vsyncMode", (int)idx);
 		};
 
-		fpsSelector.ValueChanged += (double val) => { Engine.MaxFps = (int)val; };
+		fpsSelector.ValueChanged += (double val) => { 
+			Engine.MaxFps = (int)val; 
+			ConfigWrite("maxFPS", (int)val);
+		};
+
+		resetButton.ButtonUp += () => {
+			videoConfig.Clear();
+			videoConfig.Save(configPath);
+
+			DisplayServer.WindowSetSize(ResolutionOptions.GetArray()[defaultResolution]);
+			resolutionSelector.Select(defaultResolution);
+			DisplayServer.WindowSetMode(FullscreenOptions.GetArray()[defaultFullScreen]);
+			fullscreenSelector.Select(defaultFullScreen);
+			DisplayServer.WindowSetVsyncMode(VSyncOptions.GetArray()[defaultVSync]);
+			vsyncSelector.Select(defaultVSync);
+			Engine.MaxFps = defaultFPS;
+			fpsSelector.Value = defaultFPS;			
+		};
 	}
 
 	void InitReferences() {
@@ -57,6 +93,7 @@ public partial class VideoSettings : Panel
 		fullscreenSelector = GetNode<OptionButton>("%FullscreenSelector");
 		vsyncSelector = GetNode<OptionButton>("%VSyncSelector");
 		fpsSelector = GetNode<SpinBox>("%FPSSelector");
+		resetButton = GetNode<Button>("%ResetToDefault");
 	}
 
 	void InitOptionsButton(OptionButton btn, string[] values, int indexFocus) {
@@ -67,22 +104,8 @@ public partial class VideoSettings : Panel
 		btn.Select(indexFocus); // selects project default
 	}
 
-	void readConfigFile()
-	{
-		var config = new ConfigFile();
-
-// Load data from a file.
-	Error err = config.Load("user://scores.cfg");
-
-// If the file didn't load, ignore it.
-	if (err != Error.Ok) {
-    return;
-	}
-	foreach (string video in config.GetSections())
-	{
-	var test = config.GetValue(video, "resolution");
-	DisplayServer.WindowSetMode(test);
-	}
-
+	void ConfigWrite(string key, Variant value) {
+		videoConfig.SetValue("video", key, value);
+		videoConfig.Save(configPath);
 	}
 }

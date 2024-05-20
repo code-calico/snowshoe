@@ -145,6 +145,14 @@ selected = 0
 popup/item_0/text = "Enabled"
 popup/item_0/id = 0
 
+[node name="HSeparator" type="HSeparator" parent="ControlParent/PanelHolder/Video/MarginContainer/VideoVBox"]
+layout_mode = 2
+
+[node name="ResetToDefault" type="Button" parent="ControlParent/PanelHolder/Video/MarginContainer/VideoVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Reset To Default"
+
 [node name="Audio" type="Panel" parent="ControlParent/PanelHolder"]
 visible = false
 layout_mode = 1

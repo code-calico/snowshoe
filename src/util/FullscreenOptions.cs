@@ -13,7 +13,7 @@ public static class FullscreenOptions {
     public static string[] GetStringArray() {
         string[] strArr = new string[arr.Length];
         for (int i = 0; i < arr.Length; i++) {
-            strArr[i] = arr.ToString();
+            strArr[i] = arr[i].ToString();
         }
         return strArr;
     }

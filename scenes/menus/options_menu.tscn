@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bbmqcwslvopfo"]
+[gd_scene load_steps=5 format=3 uid="uid://bbmqcwslvopfo"]
 
 [ext_resource type="Script" path="res://src/menu/OptionsMenu.cs" id="1_ohrr3"]
+[ext_resource type="Script" path="res://src/menu/VideoSettings.cs" id="2_0gvqq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ml7b"]
 bg_color = Color(0, 0, 0, 1)
@@ -70,28 +71,27 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("2_0gvqq")
 
-[node name="VideoVBox" type="VBoxContainer" parent="ControlParent/PanelHolder/Video"]
+[node name="MarginContainer" type="MarginContainer" parent="ControlParent/PanelHolder/Video"]
 layout_mode = 0
-offset_left = 25.0
-offset_top = 39.0
-offset_right = 411.0
-offset_bottom = 583.0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 50
 
-[node name="RichTextLabel" type="RichTextLabel" parent="ControlParent/PanelHolder/Video/VideoVBox"]
-layout_mode = 2
-bbcode_enabled = true
-text = "[font_size=10][i]⚠️warning: logic is not currently integrated ⚠️[/i]"
-fit_content = true
-
-[node name="Resolution" type="HBoxContainer" parent="ControlParent/PanelHolder/Video/VideoVBox"]
+[node name="VideoVBox" type="VBoxContainer" parent="ControlParent/PanelHolder/Video/MarginContainer"]
 layout_mode = 2
 
-[node name="ResolutionLabel" type="Label" parent="ControlParent/PanelHolder/Video/VideoVBox/Resolution"]
+[node name="Resolution" type="HBoxContainer" parent="ControlParent/PanelHolder/Video/MarginContainer/VideoVBox"]
+layout_mode = 2
+
+[node name="ResolutionLabel" type="Label" parent="ControlParent/PanelHolder/Video/MarginContainer/VideoVBox/Resolution"]
 layout_mode = 2
 text = "Resolution: "
 
-[node name="OptionButton" type="OptionButton" parent="ControlParent/PanelHolder/Video/VideoVBox/Resolution"]
+[node name="ResolutionOptions" type="OptionButton" parent="ControlParent/PanelHolder/Video/MarginContainer/VideoVBox/Resolution"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 item_count = 1
@@ -99,14 +99,15 @@ selected = 0
 popup/item_0/text = "1920x1080"
 popup/item_0/id = 0
 
-[node name="Fullscreen" type="HBoxContainer" parent="ControlParent/PanelHolder/Video/VideoVBox"]
+[node name="Fullscreen" type="HBoxContainer" parent="ControlParent/PanelHolder/Video/MarginContainer/VideoVBox"]
 layout_mode = 2
 
-[node name="FullscreenLabel" type="Label" parent="ControlParent/PanelHolder/Video/VideoVBox/Fullscreen"]
+[node name="FullscreenLabel" type="Label" parent="ControlParent/PanelHolder/Video/MarginContainer/VideoVBox/Fullscreen"]
 layout_mode = 2
 text = "Fullscreen: "
 
-[node name="OptionButton" type="OptionButton" parent="ControlParent/PanelHolder/Video/VideoVBox/Fullscreen"]
+[node name="FullscreenOptions" type="OptionButton" parent="ControlParent/PanelHolder/Video/MarginContainer/VideoVBox/Fullscreen"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 item_count = 3
@@ -118,28 +119,35 @@ popup/item_1/id = 1
 popup/item_2/text = "Fullscreen"
 popup/item_2/id = 2
 
-[node name="FPS" type="HBoxContainer" parent="ControlParent/PanelHolder/Video/VideoVBox"]
+[node name="FPS" type="HBoxContainer" parent="ControlParent/PanelHolder/Video/MarginContainer/VideoVBox"]
 layout_mode = 2
 
-[node name="FPSLabel" type="Label" parent="ControlParent/PanelHolder/Video/VideoVBox/FPS"]
+[node name="FPSLabel" type="Label" parent="ControlParent/PanelHolder/Video/MarginContainer/VideoVBox/FPS"]
 layout_mode = 2
-text = "Frame Rate: 
-"
+text = "Max FPS:"
 
-[node name="SpinBox" type="SpinBox" parent="ControlParent/PanelHolder/Video/VideoVBox/FPS"]
+[node name="FPSOption" type="SpinBox" parent="ControlParent/PanelHolder/Video/MarginContainer/VideoVBox/FPS"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 value = 60.0
 suffix = "fps"
 
-[node name="VSeparator" type="VSeparator" parent="ControlParent/PanelHolder/Video/VideoVBox/FPS"]
+[node name="FPS2" type="HBoxContainer" parent="ControlParent/PanelHolder/Video/MarginContainer/VideoVBox"]
 layout_mode = 2
 
-[node name="VSync" type="CheckButton" parent="ControlParent/PanelHolder/Video/VideoVBox/FPS"]
+[node name="VSyncLabel" type="Label" parent="ControlParent/PanelHolder/Video/MarginContainer/VideoVBox/FPS2"]
 layout_mode = 2
-size_flags_horizontal = 8
-button_pressed = true
-text = "Vsync"
+text = "VSync Mode: "
+
+[node name="VSyncOptions" type="OptionButton" parent="ControlParent/PanelHolder/Video/MarginContainer/VideoVBox/FPS2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 1
+selected = 0
+popup/item_0/text = "Enabled"
+popup/item_0/id = 0
 
 [node name="Audio" type="Panel" parent="ControlParent/PanelHolder"]
 visible = false

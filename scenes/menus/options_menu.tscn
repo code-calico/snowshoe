@@ -1,10 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://bbmqcwslvopfo"]
+[gd_scene load_steps=9 format=3 uid="uid://bbmqcwslvopfo"]
 
 [ext_resource type="Script" path="res://src/menu/OptionsMenu.cs" id="1_ohrr3"]
-[ext_resource type="Script" path="res://src/menu/VideoSettings.cs" id="2_0gvqq"]
+[ext_resource type="PackedScene" uid="uid://ddsjbcnqlnydq" path="res://scenes/menus/settings_panels/gameplay_settings_panel.tscn" id="2_yfgko"]
+[ext_resource type="PackedScene" uid="uid://65m4uipc8258" path="res://scenes/menus/settings_panels/video_settings_panel.tscn" id="3_qk6jh"]
+[ext_resource type="PackedScene" uid="uid://c6urqorrduas" path="res://scenes/menus/settings_panels/audio_settings_panel.tscn" id="4_uu6yl"]
+[ext_resource type="PackedScene" uid="uid://bn2e7talj6j8b" path="res://scenes/menus/settings_panels/controls_settings_panel.tscn" id="5_aqcut"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ml7b"]
 bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ybiuv"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lcq7v"]
 
@@ -38,170 +43,38 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Gameplay" type="Panel" parent="ControlParent/PanelHolder"]
-process_mode = 3
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="GameplayLabel" type="Label" parent="ControlParent/PanelHolder/Gameplay"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -70.0
-offset_top = -11.5
-offset_right = 70.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "GAMEPLAY PANEL"
-horizontal_alignment = 1
-
-[node name="Video" type="Panel" parent="ControlParent/PanelHolder"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("2_0gvqq")
-
-[node name="MarginContainer" type="MarginContainer" parent="ControlParent/PanelHolder/Video"]
+[node name="Gameplay" parent="ControlParent/PanelHolder" instance=ExtResource("2_yfgko")]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 50
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
 
-[node name="VideoVBox" type="VBoxContainer" parent="ControlParent/PanelHolder/Video/MarginContainer"]
-layout_mode = 2
+[node name="Video" parent="ControlParent/PanelHolder" instance=ExtResource("3_qk6jh")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ybiuv")
 
-[node name="Resolution" type="HBoxContainer" parent="ControlParent/PanelHolder/Video/MarginContainer/VideoVBox"]
-layout_mode = 2
+[node name="Audio" parent="ControlParent/PanelHolder" instance=ExtResource("4_uu6yl")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
 
-[node name="ResolutionLabel" type="Label" parent="ControlParent/PanelHolder/Video/MarginContainer/VideoVBox/Resolution"]
-layout_mode = 2
-text = "Resolution: "
-
-[node name="ResolutionSelector" type="OptionButton" parent="ControlParent/PanelHolder/Video/MarginContainer/VideoVBox/Resolution"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-item_count = 1
-selected = 0
-popup/item_0/text = "960x540"
-popup/item_0/id = 0
-
-[node name="Fullscreen" type="HBoxContainer" parent="ControlParent/PanelHolder/Video/MarginContainer/VideoVBox"]
-layout_mode = 2
-
-[node name="FullscreenLabel" type="Label" parent="ControlParent/PanelHolder/Video/MarginContainer/VideoVBox/Fullscreen"]
-layout_mode = 2
-text = "Fullscreen: "
-
-[node name="FullscreenSelector" type="OptionButton" parent="ControlParent/PanelHolder/Video/MarginContainer/VideoVBox/Fullscreen"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-item_count = 1
-selected = 0
-popup/item_0/text = "Bordered"
-popup/item_0/id = 0
-
-[node name="FPS" type="HBoxContainer" parent="ControlParent/PanelHolder/Video/MarginContainer/VideoVBox"]
-layout_mode = 2
-
-[node name="FPSLabel" type="Label" parent="ControlParent/PanelHolder/Video/MarginContainer/VideoVBox/FPS"]
-layout_mode = 2
-text = "Max FPS:"
-
-[node name="FPSSelector" type="SpinBox" parent="ControlParent/PanelHolder/Video/MarginContainer/VideoVBox/FPS"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-value = 60.0
-suffix = "fps"
-
-[node name="FPS2" type="HBoxContainer" parent="ControlParent/PanelHolder/Video/MarginContainer/VideoVBox"]
-layout_mode = 2
-
-[node name="VSyncLabel" type="Label" parent="ControlParent/PanelHolder/Video/MarginContainer/VideoVBox/FPS2"]
-layout_mode = 2
-text = "VSync Mode: "
-
-[node name="VSyncSelector" type="OptionButton" parent="ControlParent/PanelHolder/Video/MarginContainer/VideoVBox/FPS2"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-item_count = 1
-selected = 0
-popup/item_0/text = "Enabled"
-popup/item_0/id = 0
-
-[node name="HSeparator" type="HSeparator" parent="ControlParent/PanelHolder/Video/MarginContainer/VideoVBox"]
-layout_mode = 2
-
-[node name="ResetToDefault" type="Button" parent="ControlParent/PanelHolder/Video/MarginContainer/VideoVBox"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Reset To Default"
-
-[node name="Audio" type="Panel" parent="ControlParent/PanelHolder"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="AudioLabel" type="Label" parent="ControlParent/PanelHolder/Audio"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -53.5
-offset_top = -11.5
-offset_right = 53.5
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "AUDIO PANEL"
-horizontal_alignment = 1
-
-[node name="Controls" type="Panel" parent="ControlParent/PanelHolder"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ControlsLabel" type="Label" parent="ControlParent/PanelHolder/Controls"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -70.0
-offset_top = -11.5
-offset_right = 70.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "CONTROLS PANEL"
-horizontal_alignment = 1
+[node name="Controls" parent="ControlParent/PanelHolder" instance=ExtResource("5_aqcut")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="TabBar" type="TabBar" parent="ControlParent"]
 unique_name_in_owner = true

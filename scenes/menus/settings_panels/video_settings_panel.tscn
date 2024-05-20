@@ -1,0 +1,91 @@
+[gd_scene load_steps=2 format=3 uid="uid://65m4uipc8258"]
+
+[ext_resource type="Script" path="res://src/menu/VideoSettings.cs" id="1_ai4o5"]
+
+[node name="Video" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ai4o5")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 50
+
+[node name="VideoVBox" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Resolution" type="HBoxContainer" parent="MarginContainer/VideoVBox"]
+layout_mode = 2
+
+[node name="ResolutionLabel" type="Label" parent="MarginContainer/VideoVBox/Resolution"]
+layout_mode = 2
+text = "Resolution: "
+
+[node name="ResolutionSelector" type="OptionButton" parent="MarginContainer/VideoVBox/Resolution"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 1
+selected = 0
+popup/item_0/text = "960x540"
+popup/item_0/id = 0
+
+[node name="Fullscreen" type="HBoxContainer" parent="MarginContainer/VideoVBox"]
+layout_mode = 2
+
+[node name="FullscreenLabel" type="Label" parent="MarginContainer/VideoVBox/Fullscreen"]
+layout_mode = 2
+text = "Fullscreen: "
+
+[node name="FullscreenSelector" type="OptionButton" parent="MarginContainer/VideoVBox/Fullscreen"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 1
+selected = 0
+popup/item_0/text = "Bordered"
+popup/item_0/id = 0
+
+[node name="FPS" type="HBoxContainer" parent="MarginContainer/VideoVBox"]
+layout_mode = 2
+
+[node name="FPSLabel" type="Label" parent="MarginContainer/VideoVBox/FPS"]
+layout_mode = 2
+text = "Max FPS:"
+
+[node name="FPSSelector" type="SpinBox" parent="MarginContainer/VideoVBox/FPS"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+value = 60.0
+suffix = "fps"
+
+[node name="FPS2" type="HBoxContainer" parent="MarginContainer/VideoVBox"]
+layout_mode = 2
+
+[node name="VSyncLabel" type="Label" parent="MarginContainer/VideoVBox/FPS2"]
+layout_mode = 2
+text = "VSync Mode: "
+
+[node name="VSyncSelector" type="OptionButton" parent="MarginContainer/VideoVBox/FPS2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 1
+selected = 0
+popup/item_0/text = "Enabled"
+popup/item_0/id = 0
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VideoVBox"]
+layout_mode = 2
+
+[node name="ResetToDefault" type="Button" parent="MarginContainer/VideoVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Reset To Default"

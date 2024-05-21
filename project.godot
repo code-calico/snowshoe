@@ -22,6 +22,7 @@ ImGuiLayer="*res://addons/imgui-godot/ImGuiLayer.tscn"
 DiscordRPCLoader="*res://addons/discord-rpc-gd/nodes/discord_autoload.gd"
 DiscordRPCHandler="*res://src/global/discord_rpc_autoload.gd"
 SceneManager="*res://src/global/SceneManager.cs"
+GameSettings="*res://src/global/GameSettings.cs"
 
 [display]
 

@@ -11,80 +11,55 @@ public partial class VideoSettings : Panel
 	SpinBox fpsSelector;
 	Button resetButton;
 
-	ConfigFile videoConfig = new ConfigFile();
-	
-	const string configPath = "user://video.cfg";
-	
-	const int defaultResolution = 20;
-	const int defaultFullScreen = 0;
-	const int defaultVSync = 0;
-	const int defaultFPS = 60;
+	string sectionKey = ConfigKeys.Video.SectionKey;
+	ConfigKey resolutionKey = ConfigKeys.Video.Resolution;
+	ConfigKey fullscreenKey = ConfigKeys.Video.FullscreenMode;
+	ConfigKey vsyncKey = ConfigKeys.Video.VSyncMode;
+	ConfigKey maxFPSKey = ConfigKeys.Video.MaxFPS;
 
 	public override void _Ready() {
 		InitReferences();
-
-		videoConfig.Load(configPath);
 			
-		InitOptionsButton (
-			resolutionSelector, 
-			ResolutionOptions.GetStringArray(),
-			videoConfig.GetValue("video", "resolution", defaultResolution).AsInt32()
-		);
-
-		InitOptionsButton (
-			fullscreenSelector, 
-			FullscreenOptions.GetStringArray(), 
-			videoConfig.GetValue("video", "fullscreenMode", defaultFullScreen).AsInt32()
-		);
-
-		InitOptionsButton (
-			vsyncSelector, 
-			VSyncOptions.GetStringArray(), 
-			videoConfig.GetValue("video", "vsyncMode", defaultVSync).AsInt32()
-		);
-
-		fpsSelector.Value = videoConfig.GetValue("video", "maxFPS", defaultFPS).AsInt32();
+		InitOptionsButton(resolutionSelector, ResolutionOptions.GetStringArray(), GameSettings.ConfigRead(resolutionKey).AsInt32());
+		InitOptionsButton(fullscreenSelector, FullscreenOptions.GetStringArray(), GameSettings.ConfigRead(fullscreenKey).AsInt32());
+		InitOptionsButton(vsyncSelector, VSyncOptions.GetStringArray(), GameSettings.ConfigRead(vsyncKey).AsInt32());
+		fpsSelector.Value = GameSettings.ConfigRead(maxFPSKey).AsInt32();
 		
 		InitSubscriptions();
 	}
 	
 	void InitSubscriptions() {
-
 		resolutionSelector.ItemSelected += (long idx) => {
 			Vector2I resolution = ResolutionOptions.GetArray()[(int)idx];
 			DisplayServer.WindowSetSize(resolution);
-			ConfigWrite("resolution", (int)idx);
+			GameSettings.ConfigWrite(resolutionKey, (int)idx);
 		};
 
 		fullscreenSelector.ItemSelected += (long idx) => { 
 			DisplayServer.WindowMode fullscreenMode = FullscreenOptions.GetArray()[(int)idx]; 
 			DisplayServer.WindowSetMode(fullscreenMode);
-			ConfigWrite("fullscreenMode", (int)idx);
+			GameSettings.ConfigWrite(fullscreenKey, (int)idx);
 		};
 
 		vsyncSelector.ItemSelected += (long idx) => { 
 			DisplayServer.VSyncMode vsyncMode = VSyncOptions.GetArray()[(int)idx];
 			DisplayServer.WindowSetVsyncMode(vsyncMode);
-			ConfigWrite("vsyncMode", (int)idx);
+			GameSettings.ConfigWrite(vsyncKey, (int)idx);
 		};
 
 		fpsSelector.ValueChanged += (double val) => { 
 			Engine.MaxFps = (int)val; 
-			ConfigWrite("maxFPS", (int)val);
+			GameSettings.ConfigWrite(maxFPSKey, (int)val);
 		};
 
 		resetButton.ButtonUp += () => {
-			videoConfig.Clear();
-			videoConfig.Save(configPath);
+			GameSettings.ClearSection(sectionKey);
+			GameSettings.ApplyVideoSettings();
 
-			DisplayServer.WindowSetSize(ResolutionOptions.GetArray()[defaultResolution]);
-			resolutionSelector.Select(defaultResolution);
-			DisplayServer.WindowSetMode(FullscreenOptions.GetArray()[defaultFullScreen]);
-			fullscreenSelector.Select(defaultFullScreen);
-			DisplayServer.WindowSetVsyncMode(VSyncOptions.GetArray()[defaultVSync]);
-			vsyncSelector.Select(defaultVSync);
-			Engine.MaxFps = defaultFPS;
-			fpsSelector.Value = defaultFPS;			
+			resolutionSelector.Select(resolutionKey.GetDefault().AsInt32());
+			fullscreenSelector.Select(fullscreenKey.GetDefault().AsInt32());
+			vsyncSelector.Select(vsyncKey.GetDefault().AsInt32());
+			fpsSelector.Value = maxFPSKey.GetDefault().AsDouble();			
 		};
 	}
 
@@ -103,9 +78,5 @@ public partial class VideoSettings : Panel
 		}
 		btn.Select(indexFocus); // selects project default
 	}
-
-	void ConfigWrite(string key, Variant value) {
-		videoConfig.SetValue("video", key, value);
-		videoConfig.Save(configPath);
-	}
+	
 }

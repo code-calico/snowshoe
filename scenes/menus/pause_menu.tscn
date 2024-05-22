@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://src/menu/PauseMenu.cs" id="1_g7vbx"]
 [ext_resource type="PackedScene" uid="uid://bbmqcwslvopfo" path="res://scenes/menus/options_menu.tscn" id="2_blr4p"]
 
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4f7i5"]
 bg_color = Color(0, 0, 0, 0.882353)
 

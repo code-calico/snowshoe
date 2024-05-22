@@ -1,9 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://bbmqcwslvopfo"]
+[gd_scene load_steps=9 format=3 uid="uid://bbmqcwslvopfo"]
 
 [ext_resource type="Script" path="res://src/menu/OptionsMenu.cs" id="1_ohrr3"]
+[ext_resource type="PackedScene" uid="uid://ddsjbcnqlnydq" path="res://scenes/menus/settings_panels/gameplay_settings_panel.tscn" id="2_yfgko"]
+[ext_resource type="PackedScene" uid="uid://65m4uipc8258" path="res://scenes/menus/settings_panels/video_settings_panel.tscn" id="3_qk6jh"]
+[ext_resource type="PackedScene" uid="uid://c6urqorrduas" path="res://scenes/menus/settings_panels/audio_settings_panel.tscn" id="4_uu6yl"]
+[ext_resource type="PackedScene" uid="uid://bn2e7talj6j8b" path="res://scenes/menus/settings_panels/controls_settings_panel.tscn" id="5_aqcut"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ml7b"]
 bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ybiuv"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lcq7v"]
 
@@ -37,105 +43,26 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Gameplay" type="Panel" parent="ControlParent/PanelHolder"]
-process_mode = 3
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="GameplayLabel" type="Label" parent="ControlParent/PanelHolder/Gameplay"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -70.0
-offset_top = -11.5
-offset_right = 70.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "GAMEPLAY PANEL"
-horizontal_alignment = 1
-
-[node name="Video" type="Panel" parent="ControlParent/PanelHolder"]
+[node name="Gameplay" parent="ControlParent/PanelHolder" instance=ExtResource("2_yfgko")]
 visible = false
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 
-[node name="VideoLabel" type="Label" parent="ControlParent/PanelHolder/Video"]
+[node name="Video" parent="ControlParent/PanelHolder" instance=ExtResource("3_qk6jh")]
+visible = false
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ybiuv")
+
+[node name="Audio" parent="ControlParent/PanelHolder" instance=ExtResource("4_uu6yl")]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -70.0
-offset_top = -11.5
-offset_right = 70.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "VIDEO PANEL"
-horizontal_alignment = 1
 
-[node name="Audio" type="Panel" parent="ControlParent/PanelHolder"]
+[node name="Controls" parent="ControlParent/PanelHolder" instance=ExtResource("5_aqcut")]
 visible = false
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="AudioLabel" type="Label" parent="ControlParent/PanelHolder/Audio"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -53.5
-offset_top = -11.5
-offset_right = 53.5
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "AUDIO PANEL"
-horizontal_alignment = 1
-
-[node name="Controls" type="Panel" parent="ControlParent/PanelHolder"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ControlsLabel" type="Label" parent="ControlParent/PanelHolder/Controls"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -70.0
-offset_top = -11.5
-offset_right = 70.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "CONTROLS PANEL"
-horizontal_alignment = 1
 
 [node name="TabBar" type="TabBar" parent="ControlParent"]
 unique_name_in_owner = true
@@ -156,7 +83,7 @@ tab_3/title = "Controls"
 [node name="BackButton" type="Button" parent="ControlParent"]
 unique_name_in_owner = true
 process_mode = 3
-layout_mode = 0
+layout_mode = 1
 offset_right = 72.0
 offset_bottom = 31.0
 text = " <- Back "

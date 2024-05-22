@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dopio6ttycrca" path="res://art/tiles/DIRT.png" id="3_3sb4m"]
 [ext_resource type="PackedScene" uid="uid://5uti26uk3unv" path="res://scenes/menus/pause_menu.tscn" id="4_0kwc4"]
 
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qj7hi"]
 radius = 25.0
 height = 80.0

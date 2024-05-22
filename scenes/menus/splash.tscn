@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://bro32qd6jq184"]
 
-[ext_resource type="Texture2D" uid="uid://6352fgr05nb1" path="res://art/icons/code-calico-icon.png" id="1_0ftap"]
+[ext_resource type="Texture2D" uid="uid://6352fgr05nb1" path="res://art/icons/code-calico-icon-transparent.png" id="1_0ftap"]
 [ext_resource type="Script" path="res://src/menus/Splash.cs" id="1_3wc1o"]
 [ext_resource type="AudioStream" uid="uid://cnvmkw5b6yjow" path="res://audio/splash.wav" id="3_5mrll"]
 
@@ -10,6 +10,45 @@ variation_embolden = 0.5
 [sub_resource type="LabelSettings" id="LabelSettings_krih4"]
 font = SubResource("FontVariation_gx41j")
 font_size = 64
+
+[sub_resource type="Animation" id="Animation_2i50b"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Calico:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Code:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_75nv2"]
 resource_name = "fade_in"
@@ -64,48 +103,9 @@ tracks/3/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_pst7b"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Calico:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Code:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8flcr"]
 _data = {
-"RESET": SubResource("Animation_pst7b"),
+"RESET": SubResource("Animation_2i50b"),
 "fade_in": SubResource("Animation_75nv2")
 }
 
@@ -128,7 +128,6 @@ grow_vertical = 2
 color = Color(0.141176, 0.137255, 0.145098, 1)
 
 [node name="TextureRect" type="TextureRect" parent="."]
-modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 offset_left = 301.0
 offset_top = 188.0
@@ -139,7 +138,6 @@ grow_vertical = 2
 texture = ExtResource("1_0ftap")
 
 [node name="Calico" type="Label" parent="."]
-modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 offset_left = 480.0
 offset_top = 269.0
@@ -151,7 +149,6 @@ text = "Calico"
 label_settings = SubResource("LabelSettings_krih4")
 
 [node name="Code" type="Label" parent="."]
-modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 offset_left = 482.0
 offset_top = 215.0

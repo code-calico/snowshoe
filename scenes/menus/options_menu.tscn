@@ -44,14 +44,11 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Gameplay" parent="ControlParent/PanelHolder" instance=ExtResource("2_yfgko")]
-layout_mode = 0
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-grow_horizontal = 1
-grow_vertical = 1
+visible = false
+layout_mode = 1
 
 [node name="Video" parent="ControlParent/PanelHolder" instance=ExtResource("3_qk6jh")]
+visible = false
 layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
@@ -61,20 +58,11 @@ grow_vertical = 1
 theme_override_styles/panel = SubResource("StyleBoxEmpty_ybiuv")
 
 [node name="Audio" parent="ControlParent/PanelHolder" instance=ExtResource("4_uu6yl")]
-layout_mode = 0
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-grow_horizontal = 1
-grow_vertical = 1
+layout_mode = 1
 
 [node name="Controls" parent="ControlParent/PanelHolder" instance=ExtResource("5_aqcut")]
-layout_mode = 0
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-grow_horizontal = 1
-grow_vertical = 1
+visible = false
+layout_mode = 1
 
 [node name="TabBar" type="TabBar" parent="ControlParent"]
 unique_name_in_owner = true

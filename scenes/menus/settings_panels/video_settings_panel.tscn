@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://65m4uipc8258"]
+[gd_scene load_steps=3 format=3 uid="uid://65m4uipc8258"]
 
 [ext_resource type="Script" path="res://src/menu/VideoSettings.cs" id="1_ai4o5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ammt1"]
 
 [node name="Video" type="Panel"]
 anchors_preset = 15
@@ -8,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ammt1")
 script = ExtResource("1_ai4o5")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]

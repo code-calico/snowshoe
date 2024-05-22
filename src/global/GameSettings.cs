@@ -57,4 +57,3 @@ public partial class GameSettings : Node {
 		Engine.MaxFps = ConfigRead(ConfigKeys.Video.Resolution).AsInt32();	
 	}
 }
-

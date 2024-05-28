@@ -4,6 +4,8 @@ using System;
 public partial class Splash : Control
 {
 	AnimationPlayer animationPlayer;
+	bool skipped = false;
+
 	public override void _Ready(){
 		animationPlayer = GetNode<AnimationPlayer>("%AnimationPlayer");
 
@@ -17,7 +19,8 @@ public partial class Splash : Control
 	}
 
 	public override void _UnhandledInput(InputEvent @event) {
-		if (@event.IsPressed()) {
+		if (@event.IsPressed() && !skipped) {
+			skipped = true;
 			animationPlayer.AnimationFinished -= SplashFinished;
 			SceneManager.Load("res://scenes/menus/title.tscn");
 		}

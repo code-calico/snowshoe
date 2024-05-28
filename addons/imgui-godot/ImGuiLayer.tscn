@@ -12,7 +12,7 @@ Scale = 1.0
 ScaleToDpi = true
 IniFilename = "user://imgui.ini"
 Renderer = "RenderingDevice"
-Layer = -128
+Layer = 0
 
 [node name="ImGuiLayer" type="CanvasLayer"]
 process_mode = 3

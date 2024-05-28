@@ -1,0 +1,16 @@
+using Godot;
+using System;
+
+public partial class Killzone : Area2D
+{
+	public override void _Ready() {
+		BodyEntered += (Node2D body) => {
+			if (body.Name == "Player") {
+				SceneManager.Load("res://scenes/levels/dev/lvl-dev-test.tscn");
+			}
+		};
+	}
+}
+
+
+

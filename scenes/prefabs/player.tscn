@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://des17ubrahug8"]
+
+[ext_resource type="Script" path="res://src/character/CharacterController.cs" id="1_r11a3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uakmy"]
+radius = 30.0
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_r11a3")
+topGroundSpeed = 400.0
+dxGroundAccel = 5.0
+dxGroundDecel = 10.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CircleShape2D_uakmy")
+debug_color = Color(0, 0, 0, 0.419608)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.66, 0.66)
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+
+[node name="JumpBuffer" type="RayCast2D" parent="."]
+target_position = Vector2(0, 64)

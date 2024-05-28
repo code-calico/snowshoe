@@ -42,7 +42,6 @@ public partial class SceneManager : Node {
 		Instance.EmitSignal(SignalName.SceneChanged, scenePath);
 	}
 
-
 	public static void QuitToDesktop() => Instance.GetTree().Quit();
 
 	public static SceneManager Get() => Instance;

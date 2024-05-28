@@ -19,7 +19,7 @@ public partial class Splash : Control
 	public override void _UnhandledInput(InputEvent @event) {
 		if (@event.IsPressed()) {
 			animationPlayer.AnimationFinished -= SplashFinished;
-			SceneManager.Load("res://scenes/levels/dev/lvl-dev-test.tscn");
+			SceneManager.Load("res://scenes/menus/title.tscn");
 		}
 	}
 

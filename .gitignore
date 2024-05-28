@@ -14,8 +14,11 @@ export_presets.cfg
 data_*/
 mono_crash.*.json
 
+# Generated ignores
 .vscode/
 .idea/
 Backup/
 .vs/
 UpgradeLog.htm
+.csproj.old
+.csproj.old.*

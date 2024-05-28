@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://co2qnolseb41"]
+
+[ext_resource type="Script" path="res://src/character/PlayerMovementStats.cs" id="1_5ccoo"]
+
+[resource]
+script = ExtResource("1_5ccoo")
+topGroundSpeed = 300.0
+dxGroundAccel = 10.0
+dxGroundDecel = 5.0
+topAirSpeed = 400.0
+dxAirAccel = 20.0
+dxAirDecel = 1.0
+jumpVelocity = -400.0
+gravity = 980.0
+coyoteTime = 0.75

@@ -1,15 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://des17ubrahug8"]
+[gd_scene load_steps=4 format=3 uid="uid://des17ubrahug8"]
 
-[ext_resource type="Script" path="res://src/character/CharacterController.cs" id="1_r11a3"]
+[ext_resource type="Script" path="res://src/character/PlayerController.cs" id="1_hkuhi"]
+[ext_resource type="Resource" uid="uid://co2qnolseb41" path="res://res/default_player_stats.tres" id="2_pq3uy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uakmy"]
 radius = 30.0
 
 [node name="Player" type="CharacterBody2D"]
-script = ExtResource("1_r11a3")
-topGroundSpeed = 400.0
-dxGroundAccel = 5.0
-dxGroundDecel = 10.0
+script = ExtResource("1_hkuhi")
+stats = ExtResource("2_pq3uy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708

@@ -16,7 +16,7 @@ run/main_scene="res://scenes/menus/splash.tscn"
 config/features=PackedStringArray("4.2", "C#", "GL Compatibility")
 run/max_fps=60
 boot_splash/show_image=false
-config/icon="res://art/icons/code-calico-icon.png"
+config/icon="res://art/icons/code-calico-icon-transparent.png"
 
 [autoload]
 

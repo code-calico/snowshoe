@@ -1,8 +1,9 @@
 using Godot;
 
 public static class ConfigKeys {
-    public enum Gameplay {
-
+    public class Gameplay {
+        public const string SectionKey = "gameplay";
+        public static ConfigKey SkipSplash = new ConfigKey(SectionKey, "skipSplash", false);
     }
     
     public class Video {
@@ -13,10 +14,11 @@ public static class ConfigKeys {
         public static ConfigKey MaxFPS = new ConfigKey(SectionKey, "maxFPS", 60);
     }
 
-    public enum Audio {
+    public class Audio {
 
     }
-    public enum Controls {
+
+    public class Controls {
 
     }
 }

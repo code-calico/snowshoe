@@ -11,10 +11,12 @@ config_version=5
 [application]
 
 config/name="snowshoe"
-run/main_scene="res://scenes/menus/title.tscn"
+config/version="0.0.0"
+run/main_scene="res://scenes/menus/splash.tscn"
 config/features=PackedStringArray("4.2", "C#", "GL Compatibility")
 run/max_fps=60
-config/icon="res://art/icons/code-calico-icon.png"
+boot_splash/show_image=false
+config/icon="res://art/icons/code-calico-icon-transparent.png"
 
 [autoload]
 
@@ -43,8 +45,9 @@ enabled=PackedStringArray("res://addons/discord-rpc-gd/plugin.cfg", "res://addon
 folder_colors={
 "res://addons/": "red",
 "res://art/": "orange",
-"res://res/": "yellow",
-"res://scenes/": "green",
+"res://audio/": "yellow",
+"res://res/": "green",
+"res://scenes/": "teal",
 "res://src/": "blue"
 }
 

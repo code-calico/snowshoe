@@ -6,6 +6,7 @@ public partial class TitleMenu : Control
 	Button play; 
 	Button options;
 	Button quit;
+	Label version;
 	
 	CanvasLayer optionsMenu;
 	
@@ -14,7 +15,11 @@ public partial class TitleMenu : Control
 
 	public override void _Ready() {
 		InitReferences();
-		InitSubscriptions(); 
+		InitSubscriptions();
+
+		string projectTitle = ProjectSettings.GetSetting("application/config/name").AsString();
+		string versionNumber = ProjectSettings.GetSetting("application/config/version").AsString(); 
+		version.Text = $"{projectTitle} - v{versionNumber}";
 	}
 
 	public override void _Process(double delta) {
@@ -28,6 +33,7 @@ public partial class TitleMenu : Control
 		options = GetNode<Button>("%Options");
 		quit = GetNode<Button>("%Quit");
 		optionsMenu = GetNode<CanvasLayer>("%OptionsMenu");
+		version = GetNode<Label>("%Version");
 	}
 
 	void InitSubscriptions() {

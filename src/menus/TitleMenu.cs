@@ -10,9 +10,6 @@ public partial class TitleMenu : Control
 	
 	CanvasLayer optionsMenu;
 	
-	[Export] string playScenePath = "res://scenes/levels/dev/lvl-dev-test.tscn";
-	[Export] string optionsScenePath = "res://scenes/menus/options.tscn";
-
 	public override void _Ready() {
 		InitReferences();
 		InitSubscriptions();
@@ -37,7 +34,7 @@ public partial class TitleMenu : Control
 	}
 
 	void InitSubscriptions() {
-		play.ButtonUp += () => SceneManager.Load(playScenePath);
+		play.ButtonUp += () => SceneManager.Load(SceneFiles.Levels.DEV_TESTING);
 		options.ButtonUp += optionsMenu.Show; 
 		quit.ButtonUp += SceneManager.QuitToDesktop;  
 	}

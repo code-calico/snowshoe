@@ -11,7 +11,7 @@ public partial class Splash : Control
 
 		bool skipSplash = GameSettings.ConfigRead(ConfigKeys.Gameplay.SkipSplash).AsBool();
 		if (skipSplash) {
-			SceneManager.Load("res://scenes/levels/dev/lvl-dev-test.tscn");
+			SceneManager.Load(SceneFiles.Levels.DEV_TESTING);
 		} else {
 			animationPlayer.Play("fade_in");
 			animationPlayer.AnimationFinished += SplashFinished; 
@@ -22,10 +22,10 @@ public partial class Splash : Control
 		if (@event.IsPressed() && !skipped) {
 			skipped = true;
 			animationPlayer.AnimationFinished -= SplashFinished;
-			SceneManager.Load("res://scenes/menus/title.tscn");
+			SceneManager.Load(SceneFiles.Menus.MAIN);
 		}
 	}
 
-	private void SplashFinished(StringName name) => SceneManager.Load("res://scenes/menus/title.tscn");
+	private void SplashFinished(StringName name) => SceneManager.Load(SceneFiles.Menus.MAIN);
 
 }

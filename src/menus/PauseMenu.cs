@@ -44,7 +44,7 @@ public partial class PauseMenu : CanvasLayer
 		
 		title.ButtonUp += () => {
 			GetTree().Paused = false;
-			SceneManager.Load("res://scenes/menus/title.tscn");
+			SceneManager.Load(SceneFiles.Menus.MAIN);
 		};
 		
 		quit.ButtonDown += SceneManager.QuitToDesktop;

@@ -22,7 +22,7 @@ public partial class SceneManager : Node {
 		PackedScene sceneResource = (PackedScene)ResourceLoader.Load(pathToScene);
 		
 		// instantiating a scene transition instance
-		PackedScene transition = GD.Load<PackedScene>("res://scenes/transitions/fade_transition.tscn");
+		PackedScene transition = GD.Load<PackedScene>(SceneFiles.Transitions.FADE);
 		Node transitionInstance = transition.Instantiate();
 		Instance.AddChild(transitionInstance);
 		AnimationPlayer animPlayer = transitionInstance.GetNode<AnimationPlayer>("%AnimationPlayer");

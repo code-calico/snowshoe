@@ -5,7 +5,7 @@ using ImGuiNET;
 public partial class CharacterDebugger : Node
 {
 	ulong instanceID = 0;
-	CharacterController parent;
+	PlayerController parent;
 	[Export] private bool debugOn = true;
 	[Export] private float opacity = 0.75f;
 
@@ -13,9 +13,12 @@ public partial class CharacterDebugger : Node
 	private Vector2 posOnLoad;
 	private bool previewingPosition;
 
+	PlayerMovementStats stats;
+
 	public override void _Ready() {
-		parent = GetParent<CharacterController>();
+		parent = GetParent<PlayerController>();
 		posOnLoad = parent.Position;
+		stats = parent.GetStats();
 	}
 
 	public override void _Process(double delta) { 
@@ -45,20 +48,20 @@ public partial class CharacterDebugger : Node
 			ImGuiUtil.TopPad();
 			
 			string[] rocStrings = {
-				"Ground Acceleration: " + ImGuiUtil.FormatFloat(parent.dxGroundAccel),
-				"Ground Deceleration: " + ImGuiUtil.FormatFloat(parent.dxGroundDecel),
-				"Air Acceleration: " + ImGuiUtil.FormatFloat(parent.dxAirAccel),
-				"Air Deceleration: " + ImGuiUtil.FormatFloat(parent.dxGroundAccel)
+				"Ground Acceleration: " + ImGuiUtil.FormatFloat(stats.dxGroundAccel),
+				"Ground Deceleration: " + ImGuiUtil.FormatFloat(stats.dxGroundDecel),
+				"Air Acceleration: " + ImGuiUtil.FormatFloat(stats.dxAirAccel),
+				"Air Deceleration: " + ImGuiUtil.FormatFloat(stats.dxGroundAccel)
 			};
 			ImGuiUtil.FoldableStringList("Rate of Change", rocStrings);
 			
 			string[] generalVarStrings = {
 				$"Velocity: ({ImGuiUtil.FormatFloat(parent.Velocity.X)},{ImGuiUtil.FormatFloat(parent.Velocity.Y)})",
-				"Top Air Speed: " + parent.topAirSpeed,
-				"Top Ground Speed: " + parent.topGroundSpeed,
-				"Jump Velocity: " + parent.jumpVelocity,
-				"Gravity: " + parent.gravity,
-				"Coyote Time: " + ImGuiUtil.FormatFloat(parent.coyoteTimeTick, 2) + "/" + ImGuiUtil.FormatFloat(parent.coyoteTime, 2)
+				"Top Air Speed: " + stats.topAirSpeed,
+				"Top Ground Speed: " + stats.topGroundSpeed,
+				"Jump Velocity: " + stats.jumpVelocity,
+				"Gravity: " + stats.gravity,
+				"Coyote Time: " + ImGuiUtil.FormatFloat(stats.coyoteTimeTick, 2) + "/" + ImGuiUtil.FormatFloat(stats.coyoteTime, 2)
 			};
 			ImGuiUtil.StringList(generalVarStrings);
 			
@@ -71,8 +74,8 @@ public partial class CharacterDebugger : Node
 			ImGuiUtil.TopPad();
 
 			string[] inputStrings = {
-				"Horizontal Input: " + parent.inputAxisH,
-				"Vertical Input: " + parent.inputAxisV,
+				"Horizontal Input: " + stats.inputAxisH,
+				"Vertical Input: " + stats.inputAxisV,
 				"Space: " + Input.IsActionJustPressed("protag_jump")
 			};
 			ImGuiUtil.FoldableStringList("Input", inputStrings);
@@ -80,9 +83,9 @@ public partial class CharacterDebugger : Node
 			string[] generalVarStrings = {
 				"Grounded: " + parent.IsOnFloor(),
 				"Airborne: " + parent.IsAirborne(),
-				"Target Acceleration: " + ImGuiUtil.FormatFloat(parent.targetAccel),
-				"Target Top Speed: " + ImGuiUtil.FormatFloat(parent.targetTopSpeed),
-				"Target Deceleration: " + ImGuiUtil.FormatFloat(parent.targetDecel)
+				"Target Acceleration: " + ImGuiUtil.FormatFloat(stats.targetAccel),
+				"Target Top Speed: " + ImGuiUtil.FormatFloat(stats.targetTopSpeed),
+				"Target Deceleration: " + ImGuiUtil.FormatFloat(stats.targetDecel)
 			};
 			ImGuiUtil.StringList(generalVarStrings);
 
@@ -97,24 +100,24 @@ public partial class CharacterDebugger : Node
 
 			if(ImGui.CollapsingHeader("Vertical")) {
 				ImGuiUtil.TopPad();
-				ImGuiUtil.ModifyFloat("Jump Velocity", ref parent.jumpVelocity);
-				ImGuiUtil.ModifyFloat("Gravity", ref parent.gravity);
+				ImGuiUtil.ModifyFloat("Jump Velocity", ref stats.jumpVelocity);
+				ImGuiUtil.ModifyFloat("Gravity", ref stats.gravity);
 				ImGuiUtil.BotPad();
 			}
 
 			if(ImGui.CollapsingHeader("Ground")) {
 				ImGuiUtil.TopPad();
-				ImGuiUtil.ModifyFloat("Top Speed", ref parent.topGroundSpeed);
-				ImGuiUtil.ModifyFloat("Acceleration", ref parent.dxGroundAccel, 0.1f, 0.5f);
-				ImGuiUtil.ModifyFloat("Deceleration", ref parent.dxGroundDecel, 0.1f, 0.5f);
+				ImGuiUtil.ModifyFloat("Top Speed", ref stats.topGroundSpeed);
+				ImGuiUtil.ModifyFloat("Acceleration", ref stats.dxGroundAccel, 0.1f, 0.5f);
+				ImGuiUtil.ModifyFloat("Deceleration", ref stats.dxGroundDecel, 0.1f, 0.5f);
 				ImGuiUtil.BotPad();
 			}
 
 			if(ImGui.CollapsingHeader("Air")) {
 				ImGuiUtil.TopPad();
-				ImGuiUtil.ModifyFloat("Top Speed", ref parent.topAirSpeed);
-				ImGuiUtil.ModifyFloat("Acceleration", ref parent.dxAirAccel, 0.1f, 0.5f);
-				ImGuiUtil.ModifyFloat("Deceleration", ref parent.dxAirDecel, 0.1f, 0.5f);
+				ImGuiUtil.ModifyFloat("Top Speed", ref stats.topAirSpeed);
+				ImGuiUtil.ModifyFloat("Acceleration", ref stats.dxAirAccel, 0.1f, 0.5f);
+				ImGuiUtil.ModifyFloat("Deceleration", ref stats.dxAirDecel, 0.1f, 0.5f);
 				ImGuiUtil.BotPad();
 			}
 	

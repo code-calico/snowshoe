@@ -13,6 +13,11 @@ distance = -2046.0
 
 [node name="Player" parent="." instance=ExtResource("1_jarp0")]
 position = Vector2(663, 286)
+topAirSpeed = null
+dxAirAccel = null
+dxAirDecel = null
+jumpVelocity = null
+coyoteTime = null
 
 [node name="CharacterDebug" type="Node2D" parent="Player"]
 script = ExtResource("2_ud8dx")

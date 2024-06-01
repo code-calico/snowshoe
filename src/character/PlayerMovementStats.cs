@@ -15,10 +15,11 @@ public partial class PlayerMovementStats : Resource
 	[Export] public float dxAirAccel = 20.0f;
 	[Export] public float dxAirDecel = 1.0f;
 	[Export] public float jumpVelocity = -400.0f;
+	[Export(PropertyHint.Range, "0.0, 1.0")] public float jumpCutPercent = 0.5f;
     [Export] public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 
     [ExportSubgroup("Unique")]
-	[Export] public float coyoteTime = 0.75f;
+	[Export] public float coyoteTime = 0.05f;
     public float coyoteTimeTick;
 
     public float inputAxisH, inputAxisV = 0; 
@@ -26,5 +27,8 @@ public partial class PlayerMovementStats : Resource
 
     public bool jumpUsed = false;
 	public bool jumpQueued = false;
+
+	//-1 means facing left, 1 means facing right
+	public float directionFacing = 1;
     
 }

@@ -37,6 +37,12 @@ public partial class PlayerController : CharacterBody2D
 			stats.jumpUsed = false;
 			stats.coyoteTimeTick = stats.coyoteTime;
 		}
+
+		if (IsAirborne() && stats.jumpUsed == true && velocityMod.Y <= 0) {
+			if (Input.IsActionJustReleased("protag_jump")) {
+				velocityMod.Y *= stats.jumpCutPercent;
+			}
+		}
 		
 		if (stats.coyoteTimeTick > 0 && !IsOnFloor() && !stats.jumpUsed) {
 			stats.coyoteTimeTick -= (float)delta;
@@ -47,6 +53,7 @@ public partial class PlayerController : CharacterBody2D
 				stats.jumpUsed = true;
 			}
 		}
+
 	
 		JumpQueueCheck(); 
 		if (stats.jumpQueued && IsOnFloor()) {
@@ -60,13 +67,25 @@ public partial class PlayerController : CharacterBody2D
 
 		if (HorizontalInputActive()) {
 			velocityMod.X += stats.inputAxisH * stats.dxGroundAccel;
+			stats.directionFacing = stats.inputAxisH;
 		} else {
 			velocityMod.X = Mathf.MoveToward(Velocity.X, 0, stats.targetDecel);
 		}
 
 		velocityMod.X = Mathf.Clamp(velocityMod.X, -stats.targetTopSpeed, stats.targetTopSpeed);
+
+		if (Input.IsActionJustPressed("protag_pounce")) {
+			if (stats.directionFacing == -1) {
+				velocityMod.X += -1800f;
+			}
+			else {
+				velocityMod.X += 1800f;
+			}
+		}
+
 		Velocity = velocityMod;
 		
+
 		MoveAndSlide();
 	}
 

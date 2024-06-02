@@ -4,12 +4,12 @@ using System;
 public partial class Splash : Control
 {
 	AnimationPlayer animationPlayer;
-	bool skipped = false;
+	bool skipSplash;
 
 	public override void _Ready(){
 		animationPlayer = GetNode<AnimationPlayer>("%AnimationPlayer");
 
-		bool skipSplash = GameSettings.ConfigRead(ConfigKeys.Gameplay.SkipSplash).AsBool();
+		skipSplash = GameSettings.ConfigRead(ConfigKeys.Gameplay.SkipSplash).AsBool();
 		if (skipSplash) {
 			SceneManager.Load(SceneFiles.Levels.DEV_TESTING);
 		} else {
@@ -19,8 +19,7 @@ public partial class Splash : Control
 	}
 
 	public override void _UnhandledInput(InputEvent @event) {
-		if (@event.IsPressed() && !skipped) {
-			skipped = true;
+		if (@event.IsPressed() && !skipSplash) {
 			animationPlayer.AnimationFinished -= SplashFinished;
 			SceneManager.Load(SceneFiles.Menus.MAIN);
 		}

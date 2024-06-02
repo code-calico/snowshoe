@@ -60,12 +60,6 @@ public partial class PlayerController : CharacterBody2D
 			}
 		}
 
-		if (Input.IsActionPressed("protag_pounce")) {
-			Engine.TimeScale = 0.01;
-		} else {
-			Engine.TimeScale = 1.0;
-		}
-
 		ProcessPhysicsFrame();
 	}
 

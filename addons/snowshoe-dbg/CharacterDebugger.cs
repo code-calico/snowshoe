@@ -82,7 +82,7 @@ public partial class CharacterDebugger : Node
 
 			string[] generalVarStrings = {
 				"Grounded: " + parent.IsOnFloor(),
-				"Airborne: " + parent.IsAirborne(),
+				"Airborne: " + !parent.IsOnFloor(),
 				"Target Acceleration: " + ImGuiUtil.FormatFloat(stats.targetAccel),
 				"Target Top Speed: " + ImGuiUtil.FormatFloat(stats.targetTopSpeed),
 				"Target Deceleration: " + ImGuiUtil.FormatFloat(stats.targetDecel)

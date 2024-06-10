@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://ddsjbcnqlnydq"]
+[gd_scene load_steps=3 format=3 uid="uid://ddsjbcnqlnydq"]
+
+[ext_resource type="Script" path="res://src/menus/GameplaySettings.cs" id="1_3ol57"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ic8j4"]
 
@@ -10,14 +12,33 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_ic8j4")
+script = ExtResource("1_3ol57")
 
-[node name="GameplayLabel" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "GAMEPLAY PANEL"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 50
+
+[node name="VideoVBox" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="SplashSkip" type="HBoxContainer" parent="MarginContainer/VideoVBox"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VideoVBox/SplashSkip"]
+layout_mode = 2
+text = "Autoskip Splash: "
+
+[node name="SkipSplashSelect" type="CheckBox" parent="MarginContainer/VideoVBox/SplashSkip"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VideoVBox"]
+layout_mode = 2
+
+[node name="ResetToDefault" type="Button" parent="MarginContainer/VideoVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Reset To Default"

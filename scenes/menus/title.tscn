@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://b81mlelwhamwy"]
+[gd_scene load_steps=4 format=3 uid="uid://b81mlelwhamwy"]
 
-[ext_resource type="Script" path="res://src/menu/TitleMenu.cs" id="1_fwnjc"]
+[ext_resource type="Script" path="res://src/menus/TitleMenu.cs" id="1_fwnjc"]
 [ext_resource type="PackedScene" uid="uid://bbmqcwslvopfo" path="res://scenes/menus/options_menu.tscn" id="2_kc6eq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_eomqr"]
+line_spacing = 6.0
+font_color = Color(0.176471, 0.176471, 0.176471, 1)
 
 [node name="TitleMenu" type="Control"]
 layout_mode = 3
@@ -11,6 +15,26 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fwnjc")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="Version" type="Label" parent="MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+label_settings = SubResource("LabelSettings_eomqr")
+horizontal_alignment = 2
 
 [node name="TitleArrangement" type="VBoxContainer" parent="."]
 layout_mode = 1

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d16yx03s2rmgm"
-path="res://.godot/imported/code-calico-icon.png-8945d8c9eaacd530674b833a877705ed.ctex"
+uid="uid://p1n105bh8xt1"
+path="res://.godot/imported/one-way.png-0edd1e6a98b1bb238acf5184540d8654.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/icons/code-calico-icon.png"
-dest_files=["res://.godot/imported/code-calico-icon.png-8945d8c9eaacd530674b833a877705ed.ctex"]
+source_file="res://art/tiles/one-way.png"
+dest_files=["res://.godot/imported/one-way.png-0edd1e6a98b1bb238acf5184540d8654.ctex"]
 
 [params]
 

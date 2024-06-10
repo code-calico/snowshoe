@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://65m4uipc8258"]
 
-[ext_resource type="Script" path="res://src/menu/VideoSettings.cs" id="1_ai4o5"]
+[ext_resource type="Script" path="res://src/menus/VideoSettings.cs" id="1_ai4o5"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ammt1"]
 
@@ -66,6 +66,7 @@ text = "Max FPS:"
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+max_value = 9999.0
 value = 60.0
 suffix = "fps"
 

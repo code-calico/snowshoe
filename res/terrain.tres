@@ -1,7 +1,7 @@
 [gd_resource type="TileSet" load_steps=12 format=3 uid="uid://dpunucjmt4j35"]
 
 [ext_resource type="Texture2D" uid="uid://dqyt4nsd26o4i" path="res://art/tiles/dirt-full.png" id="1_gd7yr"]
-[ext_resource type="Texture2D" uid="uid://p1n105bh8xt1" path="res://art/tiles/one-way.png" id="1_xxiqs"]
+[ext_resource type="Texture2D" path="res://art/tiles/one-way.png" id="1_xxiqs"]
 [ext_resource type="Texture2D" uid="uid://dmkx4tqqxb1c0" path="res://art/tiles/grass.png" id="2_7v1fc"]
 [ext_resource type="Texture2D" uid="uid://bs6kihpd4y5pa" path="res://art/tiles/rock.png" id="3_f7f5j"]
 [ext_resource type="Texture2D" uid="uid://bqibcxx0id72t" path="res://art/tiles/rockondirt.png" id="4_dnxo8"]

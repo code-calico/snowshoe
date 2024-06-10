@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://b24nadlvc63bh"]
 
-[ext_resource type="Texture2D" path="res://art/icons/code-calico-icon-transparent.png" id="1_0ftap"]
+[ext_resource type="Texture2D" uid="uid://6352fgr05nb1" path="res://art/icons/code-calico-icon-transparent.png" id="1_0ftap"]
 [ext_resource type="Script" path="res://src/menus/Splash.cs" id="1_3wc1o"]
-[ext_resource type="AudioStream" path="res://audio/splash.ogg" id="3_84dpb"]
+[ext_resource type="AudioStream" uid="uid://cusenaackclal" path="res://audio/splash.ogg" id="3_84dpb"]
 
 [sub_resource type="FontVariation" id="FontVariation_gx41j"]
 variation_embolden = 0.5

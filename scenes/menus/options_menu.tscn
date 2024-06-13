@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://bbmqcwslvopfo"]
+[gd_scene load_steps=10 format=3 uid="uid://bbmqcwslvopfo"]
 
 [ext_resource type="Script" path="res://src/menus/OptionsMenu.cs" id="1_ohrr3"]
 [ext_resource type="PackedScene" uid="uid://ddsjbcnqlnydq" path="res://scenes/menus/settings_panels/gameplay_settings_panel.tscn" id="2_yfgko"]
 [ext_resource type="PackedScene" uid="uid://65m4uipc8258" path="res://scenes/menus/settings_panels/video_settings_panel.tscn" id="3_qk6jh"]
 [ext_resource type="PackedScene" uid="uid://c6urqorrduas" path="res://scenes/menus/settings_panels/audio_settings_panel.tscn" id="4_uu6yl"]
 [ext_resource type="PackedScene" uid="uid://bn2e7talj6j8b" path="res://scenes/menus/settings_panels/controls_settings_panel.tscn" id="5_aqcut"]
+[ext_resource type="Script" path="res://src/menus/AudioSettings.cs" id="5_kvgcn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ml7b"]
 bg_color = Color(0, 0, 0, 1)
@@ -58,7 +59,9 @@ grow_vertical = 1
 theme_override_styles/panel = SubResource("StyleBoxEmpty_ybiuv")
 
 [node name="Audio" parent="ControlParent/PanelHolder" instance=ExtResource("4_uu6yl")]
+visible = false
 layout_mode = 1
+script = ExtResource("5_kvgcn")
 
 [node name="Controls" parent="ControlParent/PanelHolder" instance=ExtResource("5_aqcut")]
 visible = false

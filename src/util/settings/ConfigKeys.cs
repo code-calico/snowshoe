@@ -14,8 +14,12 @@ public static class ConfigKeys {
         public static ConfigKey MaxFPS = new ConfigKey(SectionKey, "maxFPS", 60);
     }
 
-    public class Audio {
-
+    public class Audio
+    {
+        public const string SectionKey = "audio";
+        public static ConfigKey MasterVolume = new ConfigKey(SectionKey, "volume", 100);
+        public static ConfigKey MusicVolume = new ConfigKey(SectionKey, "volume", 100);
+        public static ConfigKey SFXVolume = new ConfigKey(SectionKey, "volume", 100);
     }
 
     public class Controls {

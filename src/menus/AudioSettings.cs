@@ -13,11 +13,33 @@ public partial class AudioSettings : Panel
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		InitSubscriptions();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+	}
+	void InitSubscriptions()
+	{
+		MasterVolumeSlider.ValueChanged += (double val) =>
+		{
+			float CurrentMasterVolume = (float)MasterVolumeSlider.Value;
+			AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex("Master"), CurrentMasterVolume);
+			GameSettings.ConfigWrite(MasterVolume, CurrentMasterVolume);
+		};
+		MusicVolumeSlider.ValueChanged += (double val) =>
+		{
+			float CurrentMusicVolume = (float)MusicVolumeSlider.Value;
+			AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex("sfx"), CurrentMusicVolume);
+			GameSettings.ConfigWrite(MusicVolume, CurrentMusicVolume);
+		};
+		SFXVolumeSlider.ValueChanged += (double val) =>
+		{
+			float CurrentSFXVolume = (float)SFXVolumeSlider.Value;
+			AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex("music"), CurrentSFXVolume);
+			GameSettings.ConfigWrite(SFXVolume, CurrentSFXVolume);
+		};
 	}
 	void InitReferences()
 	{

@@ -17,9 +17,9 @@ public static class ConfigKeys {
     public class Audio
     {
         public const string SectionKey = "audio";
-        public static ConfigKey MasterVolume = new ConfigKey(SectionKey, "volume", 100);
-        public static ConfigKey MusicVolume = new ConfigKey(SectionKey, "volume", 100);
-        public static ConfigKey SFXVolume = new ConfigKey(SectionKey, "volume", 100);
+        public static ConfigKey MasterVolume = new ConfigKey(SectionKey, "masterVolume", 100);
+        public static ConfigKey MusicVolume = new ConfigKey(SectionKey, "Musicvolume", 100);
+        public static ConfigKey SFXVolume = new ConfigKey(SectionKey, "sfxVolume", 100);
     }
 
     public class Controls {

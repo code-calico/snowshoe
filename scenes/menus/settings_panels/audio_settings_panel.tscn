@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://c6urqorrduas"]
+[gd_scene load_steps=3 format=3 uid="uid://c6urqorrduas"]
+
+[ext_resource type="Script" path="res://src/menus/AudioSettings.cs" id="1_hmut8"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ybiuv"]
 
@@ -9,6 +11,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_ybiuv")
+script = ExtResource("1_hmut8")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
@@ -29,6 +32,7 @@ text = "Master Volume
 
 [node name="MasterVolumeSlider" type="HSlider" parent="MarginContainer/AudioVBox"]
 layout_mode = 2
+rounded = true
 
 [node name="Label2" type="Label" parent="MarginContainer/AudioVBox"]
 layout_mode = 2

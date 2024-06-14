@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://src/menus/TitleMenu.cs" id="1_fwnjc"]
 [ext_resource type="PackedScene" uid="uid://bbmqcwslvopfo" path="res://scenes/menus/options_menu.tscn" id="2_kc6eq"]
-[ext_resource type="AudioStream" uid="uid://cqoow8aocq3pk" path="res://audio/snowshoe.ogg" id="3_amxr7"]
+[ext_resource type="AudioStream" path="res://audio/snowshoe.ogg" id="3_amxr7"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_eomqr"]
 line_spacing = 6.0
@@ -96,6 +96,4 @@ visible = false
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_amxr7")
-volume_db = 8.432
 autoplay = true
-bus = &"music"

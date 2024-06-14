@@ -18,6 +18,10 @@ run/max_fps=60
 boot_splash/show_image=false
 config/icon="res://art/icons/code-calico-icon-transparent.png"
 
+[audio]
+
+buses/default_bus_layout="res://res/default_bus_layout.tres"
+
 [autoload]
 
 ImGuiLayer="*res://addons/imgui-godot/ImGuiLayer.tscn"

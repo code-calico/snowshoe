@@ -30,6 +30,8 @@ text = "Master Volume
 [node name="MasterVolumeSlider" type="HSlider" parent="MarginContainer/AudioVBox"]
 unique_name_in_owner = true
 layout_mode = 2
+min_value = -25.0
+max_value = 10.0
 
 [node name="Label2" type="Label" parent="MarginContainer/AudioVBox"]
 layout_mode = 2
@@ -39,6 +41,8 @@ text = "SFX Volume
 [node name="SFXVolumeSlider" type="HSlider" parent="MarginContainer/AudioVBox"]
 unique_name_in_owner = true
 layout_mode = 2
+min_value = -25.0
+max_value = 10.0
 
 [node name="Music Volume" type="Label" parent="MarginContainer/AudioVBox"]
 layout_mode = 2
@@ -47,3 +51,4 @@ text = "Music Volume"
 [node name="MusicVolumeSlider" type="HSlider" parent="MarginContainer/AudioVBox"]
 unique_name_in_owner = true
 layout_mode = 2
+min_value = -25.0

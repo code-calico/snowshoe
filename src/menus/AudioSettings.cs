@@ -13,6 +13,7 @@ public partial class AudioSettings : Panel
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		InitReferences();
 		InitSubscriptions();
 	}
 
@@ -44,7 +45,7 @@ public partial class AudioSettings : Panel
 	void InitReferences()
 	{
 		MasterVolumeSlider = GetNode<HSlider>("%MasterVolumeSlider");
-		MasterVolumeSlider = GetNode<HSlider>("%SFXVolumeSlider");
-		MasterVolumeSlider = GetNode<HSlider>("%MusicVolumeSlider");
+		SFXVolumeSlider = GetNode<HSlider>("%SFXVolumeSlider");
+		MusicVolumeSlider = GetNode<HSlider>("%MusicVolumeSlider");
 	}
 }

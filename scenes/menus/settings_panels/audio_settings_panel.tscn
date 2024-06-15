@@ -52,3 +52,4 @@ text = "Music Volume"
 unique_name_in_owner = true
 layout_mode = 2
 min_value = -25.0
+max_value = 10.0

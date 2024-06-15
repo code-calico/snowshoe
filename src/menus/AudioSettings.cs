@@ -20,6 +20,9 @@ public partial class AudioSettings : Panel
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		MasterVolumeSlider.Value = GameSettings.ConfigRead(MasterVolume).AsDouble();
+		MusicVolumeSlider.Value = GameSettings.ConfigRead(MusicVolume).AsDouble();
+		SFXVolumeSlider.Value = GameSettings.ConfigRead(SFXVolume).AsDouble();
 	}
 	void InitSubscriptions()
 	{

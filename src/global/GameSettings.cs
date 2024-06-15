@@ -19,6 +19,7 @@ public partial class GameSettings : Node {
 		settingsConfig.Load(configPath);
 
 		ApplyVideoSettings();
+		ApplyAudioSettings();
 	}
 
 	public static void ConfigWrite(ConfigKey key, Variant value) {		
@@ -43,6 +44,16 @@ public partial class GameSettings : Node {
 	}
 
 	public static GameSettings Get() => Instance;
+
+	public static void ApplyAudioSettings() {
+		AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex("Master"), (float)ConfigRead(ConfigKeys.Audio.MasterVolume).AsDouble());
+		GD.Print("Master Bus DB: " + AudioServer.GetBusVolumeDb(AudioServer.GetBusIndex("Master")));
+		AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex("music"), (float)ConfigRead(ConfigKeys.Audio.MusicVolume).AsDouble());
+		GD.Print("Music Bus DB: " + AudioServer.GetBusVolumeDb(AudioServer.GetBusIndex("music")));
+		AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex("sfx"), (float)ConfigRead(ConfigKeys.Audio.SFXVolume).AsDouble());
+		GD.Print("SFX Bus DB: " + AudioServer.GetBusVolumeDb(AudioServer.GetBusIndex("sfx")));
+
+	}
 
 	public static void ApplyVideoSettings() {
 		Vector2I[] resolutions = ResolutionOptions.GetArray();

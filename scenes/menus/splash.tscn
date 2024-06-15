@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b24nadlvc63bh"]
+[gd_scene load_steps=9 format=3 uid="uid://bro32qd6jq184"]
 
 [ext_resource type="Texture2D" uid="uid://6352fgr05nb1" path="res://art/icons/code-calico-icon-transparent.png" id="1_0ftap"]
 [ext_resource type="Script" path="res://src/menus/Splash.cs" id="1_3wc1o"]

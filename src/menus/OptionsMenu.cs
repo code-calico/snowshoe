@@ -18,6 +18,8 @@ public partial class OptionsMenu : CanvasLayer
 		InitReferences();
 		InitPanels();
 		InitSubscriptions();
+		// compiles w/o error, but nothing seems to actually be focused. annoying
+		GetNode<TabBar>("%TabBar").GrabFocus();
 	}
 
 	// hide all panels and turn the new panel visible

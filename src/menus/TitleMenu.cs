@@ -13,6 +13,7 @@ public partial class TitleMenu : Control
 	public override void _Ready() {
 		InitReferences();
 		InitSubscriptions();
+		GetNode<Button>("TitleArrangement/ButtonContainer/Play").GrabFocus();
 
 		string projectTitle = ProjectSettings.GetSetting("application/config/name").AsString();
 		string versionNumber = ProjectSettings.GetSetting("application/config/version").AsString(); 

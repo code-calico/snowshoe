@@ -13,6 +13,7 @@ public partial class TitleMenu : Control
 	public override void _Ready() {
 		InitReferences();
 		InitSubscriptions();
+		//focus is lost when you go back into main menu from options. this is bc of how _ready works. i'll have to look into request_ready or put this logic somewhere else.
 		GetNode<Button>("%Play").GrabFocus();
 
 		string projectTitle = ProjectSettings.GetSetting("application/config/name").AsString();

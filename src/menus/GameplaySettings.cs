@@ -20,6 +20,8 @@ public partial class GameplaySettings : Panel
 			GameSettings.ClearSection(sectionKey);
 			skipSplash.SetPressedNoSignal(GameSettings.ConfigRead(skipSplashKey).AsBool());
 		};
+		//i can manually focus this and that causes keyboard/controller nav to work but auto-focusing it seems to do nothing? annoying.
+		GetNode<Button>("%SkipSplashSelect").GrabFocus();
 	}
 
 }

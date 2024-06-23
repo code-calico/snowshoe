@@ -19,7 +19,8 @@ public partial class OptionsMenu : CanvasLayer
 		InitPanels();
 		InitSubscriptions();
 		// compiles w/o error, but nothing seems to actually be focused. annoying
-		GetNode<Button>("%BackButton").GrabFocus();
+		//i can click on the tab bar and then keyboard/controller nav works but this line does nothing ARGHHHHHHHHHHHHHHHHHHHHHHHH
+		GetNode<TabBar>("%TabBar").GrabFocus();
 	}
 
 	// hide all panels and turn the new panel visible

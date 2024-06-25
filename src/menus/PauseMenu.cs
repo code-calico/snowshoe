@@ -18,6 +18,7 @@ public partial class PauseMenu : CanvasLayer
 		InitReferences();
 		InitSubscriptions();
 		Visible = isVisibleOnStart;
+		GetNode<Button>("%Resume").GrabFocus();
 	}
 
 	public override void _Process(double delta) {

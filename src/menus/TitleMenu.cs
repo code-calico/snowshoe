@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.IO;
 
 public partial class TitleMenu : Control
 {
@@ -35,10 +36,10 @@ public partial class TitleMenu : Control
 		version = GetNode<Label>("%Version");
 	}
 
-	void InitSubscriptions() {
+	void InitSubscriptions()
+	{
 		play.ButtonUp += () => SceneManager.Load(SceneFiles.Levels.DEV_TESTING);
-		options.ButtonUp += optionsMenu.Show; 
-		quit.ButtonUp += SceneManager.QuitToDesktop;  
+		options.ButtonUp += optionsMenu.Show;
+		quit.ButtonUp += SceneManager.QuitToDesktop;
 	}
-	
 }

@@ -1,7 +1,9 @@
 using Godot;
 using System;
 using System.Runtime.CompilerServices;
-
+/// <summary>
+/// A class for easily accessing scenes from
+/// </summary>
 public partial class SceneManager : Node {
 
 	public static SceneManager Instance { get; private set; }

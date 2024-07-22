@@ -1,8 +1,7 @@
 using Godot;
-using System;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-
+/// <summary>
+/// Class for quickly being able to write to/read from the .cfg file that we use for settings. Use a separate file for the actual menu itself.
+/// </summary>
 public partial class GameSettings : Node {
 
 	public static GameSettings Instance { get; private set; }

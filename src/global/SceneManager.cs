@@ -1,8 +1,6 @@
 using Godot;
-using System;
-using System.Runtime.CompilerServices;
 /// <summary>
-/// A class for easily accessing scenes from
+/// A class for easily loading other scenes. also lets you easily quit to desktop
 /// </summary>
 public partial class SceneManager : Node {
 

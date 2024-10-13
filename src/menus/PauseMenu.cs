@@ -50,5 +50,3 @@ public partial class PauseMenu : CanvasLayer
 		quit.ButtonDown += SceneManager.QuitToDesktop;
 	}
 }
-
-
